@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Login - floridApp</title>
+  <!-- Bootstrap core CSS-->
+  <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template-->
+  <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin/css/sb-admin.css" rel="stylesheet">
+</head>
+<body class="bg-dark">
+  <div class="container">
+    <div class="alert alert-danger" role="alert" th:if="${param.error}">
+          El email no es correcto y/o la password no es correcta. 
+    </div>
+    <div class="card card-login mx-auto mt-5">
+      <div class="card-header">Bienvenido a FloridApp</div>
+      <div class="card-body">
+        <form th:action="@{/login}" method="post" >
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input class="form-control" type="email" id="email" name="email" placeholder="Email" required autofocus>
+          </div>
+          <div class="form-group">
+            <label for="InputPassword">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name="remember-me" type="checkbox"> Recordar Password
+              </label>
+            </div>
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" th:href="@{/signup}">Crear Cuenta</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap core JavaScript-->
+  <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/jquery/jquery.min.js"></script>
+  <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+</body>
+
+</html>

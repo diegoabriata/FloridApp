@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Registrarse en floridApp :)</title>
+  <!-- Bootstrap core CSS-->
+  <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template-->
+  <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin/css/sb-admin.css" rel="stylesheet">
+</head>
+
+<body class="bg-dark">
+  <div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Registrar una Cuenta</div>
+      <div class="card-body">
+        <form role="form" method="POST" th:action="@{/signup}" th:object="${user}">
+          <div class="row">
+             <div class="col-md-1"></div>
+             <div class="col-md-12">
+              <div class="alert alert-success" role="alert" th:if="${msg}" th:utext="${msg}">
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="name">Nombre</label>
+                <input type="text" th:field="*{firstname}" class="form-control" id="firstname" placeholder="Nombre" required autofocus>
+              </div>
+              <div class="col-md-6">
+                <label for="exampleInputLastName">Apellido</label>
+                <input type="text" th:field="*{lastname}" class="form-control" id="lastname" placeholder="Apellido" required autofocus>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="usuario@birraflorida.com" required autofocus>
+          </div>
+          <div>
+             
+            <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Password" required>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">
+            Registrarse
+          </button>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" th:href="@{/}">Volver al Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap core JavaScript-->
+  <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/jquery/jquery.min.js"></script>
+  <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+  
+  <!-- <script>
+  $(function() {
+    // setTimeout() function will be fired after page is loaded
+    // it will wait for 5 sec. and then will fire
+    // $("#successMessage").hide() function
+    setTimeout(function() {
+        $(".alert alert-success").removeId('hide');
+        $('.alert alert-success').html('').css('display','none');
+    }, 5000);
+});  
+</script> -->
+</body>
+
+</html>
