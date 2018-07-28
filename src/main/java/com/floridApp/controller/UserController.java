@@ -37,6 +37,7 @@ public class UserController {
 	  return model;
 	 }
 	 
+	 
 	 @RequestMapping(value= {"/signup"}, method=RequestMethod.POST)
 	 public ModelAndView createUser(@Valid User user, BindingResult bindingResult) {
 	  ModelAndView model = new ModelAndView();
