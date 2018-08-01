@@ -1,15 +1,17 @@
 package com.floridApp.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.floridApp.model.User;
 import com.floridApp.service.UserService;
@@ -20,21 +22,28 @@ public class UserController {
 	@Autowired
 	 private UserService userService;
 	 
-	@RequestMapping(value= {"/", "/login"}, method=RequestMethod.GET)
-		public ModelAndView login() {
+	@RequestMapping(value= {"/","/login"}, method=RequestMethod.GET)
+	public ModelAndView login() {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("user/login");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (!(auth instanceof AnonymousAuthenticationToken)) {
+		    // The user is logged in
+			model.setViewName("redirect:/home");
+		}else {
+			model.setViewName("user/login");
+		}
+		
 		return model;
 	 }
 	 
 	 @RequestMapping(value= {"/signup"}, method=RequestMethod.GET)
 	 public ModelAndView signup() {
-	  ModelAndView model = new ModelAndView();
-	  User user = new User();
-	  model.addObject("user", user);
-	  model.setViewName("user/signup");
+		 ModelAndView model = new ModelAndView();
+		 User user = new User();
+		 model.addObject("user", user);
+		 model.setViewName("user/signup");
 	  
-	  return model;
+		 return model;
 	 }
 	 
 	 
@@ -59,10 +68,10 @@ public class UserController {
 	 }
 	 
 	 @RequestMapping(value= {"/home"}, method=RequestMethod.GET)
-	 public ModelAndView home() {
+	 public ModelAndView home(HttpServletRequest httpServletRequest) {
 	  ModelAndView model = new ModelAndView();
-	  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	  User user = userService.findUserByEmail(auth.getName());
+	  //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	  User user = userService.findUserByEmail(httpServletRequest.getUserPrincipal().getName());
 	  
 	  model.addObject("userName", user.getFirstname() + " " + user.getLastname());
 	  model.setViewName("home/home");

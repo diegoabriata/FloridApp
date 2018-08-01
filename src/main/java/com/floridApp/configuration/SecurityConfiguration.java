@@ -51,17 +51,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	   .and().logout()
 	   .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 	   .logoutSuccessUrl("/")
-	   .and().rememberMe()
-	   .tokenRepository(persistentTokenRepository())
-	   .tokenValiditySeconds(60*60)
+	   .and()
+		   .rememberMe()
+		   .rememberMeCookieName("javasampleapproach-remember-me")
+			.tokenValiditySeconds(24 * 60 * 60) // expired time = 1 day
+			.tokenRepository(persistentTokenRepository())
 	   .and().exceptionHandling().accessDeniedPage("/access_denied");
 	 }
 	 
 	 @Bean
-	 public PersistentTokenRepository persistentTokenRepository() {
-	  JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
-	  db.setDataSource(dataSource);
-	  
-	  return db;
-	 }
+		public PersistentTokenRepository persistentTokenRepository() {
+	        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+	        tokenRepository.setDataSource(dataSource);
+	        return tokenRepository;
+	    }
+		
+		@Autowired
+		public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+			auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
+		}	
 }

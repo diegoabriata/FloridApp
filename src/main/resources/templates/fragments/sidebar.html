@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+			<!-- START PAGE SIDEBAR -->
+            <div class="page-sidebar" th:fragment="sidebar">
+                <!-- START X-NAVIGATION -->
+                <ul class="x-navigation">
+                    <li class="xn-logo">
+                        <a th:href="@{/home}">FloridApp</a>
+                        <a href="#" class="x-navigation-control"></a>
+                    </li>
+                    <li class="xn-profile">
+                        <a href="#" class="profile-mini">
+                            <img src="/assets/images/users/no-image.jpg" alt="John Doe"/>
+                        </a>
+                        <div class="profile">
+                            <div class="profile-image">
+                                <img src="/assets/images/users/no-image.jpg" alt="John Doe"/>
+                            </div>
+                           	
+                            <div class="profile-data">
+                                <div class="profile-data-name">[[${#httpServletRequest.getUserPrincipal().getName()}]]</div>
+                            </div>
+                        </div>                                                                        
+                    </li>
+                    <li class="xn-title">Menu</li>
+                    <li class="active">
+                        <a th:href="@{/customer/list}"><span class="fa fa-users"></span> <span class="xn-text">Clientes</span></a>                        
+                    </li>   
+                </ul>
+                <!-- END X-NAVIGATION -->
+            </div>
+            <!-- END PAGE SIDEBAR -->
+</body>
+</html>

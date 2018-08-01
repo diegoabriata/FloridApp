@@ -10,27 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.floridApp.model.Customer;
-import com.floridApp.model.User;
 import com.floridApp.service.CustomerService;
-import com.floridApp.service.UserService;
 
 @Controller
 @RequestMapping(value="/customer")
-public class CustomerController {
-	
-	@Autowired
-	UserService userService;
+public class CustomerController{
+
 	@Autowired
 	CustomerService customerService;
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String customersList( Model model) {
-		
-		model.addAttribute("customerList", customerService.getAllCustomer());
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUserByEmail(auth.getName());
-		model.addAttribute("userName", user.getFirstname() + " " + user.getLastname());
-		
+		model.addAttribute("customerList", customerService.getAllCustomer());		
 		return "home/customer_list";
 	}
 	
