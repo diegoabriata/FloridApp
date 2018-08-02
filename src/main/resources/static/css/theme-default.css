@@ -1660,11 +1660,8 @@ ul.panel-controls > li {
 ul.panel-controls > li > a {
   display: block;
   float: left;
-  width: 30px;
-  height: 30px;
   text-align: center;
   line-height: 28px;
-  color: #22262e;
   border: 1px solid #BBB;
   -moz-border-radius: 20%;
   -webkit-border-radius: 20%;

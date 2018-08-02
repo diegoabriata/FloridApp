@@ -15,7 +15,7 @@
                                     <ul class="panel-controls">
                                         <li>
                                             <a th:href="@{/customer/customerEdit}"
-                                                class="btn btn-success"><div class="fa fa-plus"></div>
+                                                class="btn btn-success fa fa-plus">
                                             </a>
                                         </li>        
                                     </ul>
@@ -36,7 +36,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>                                            
-                                                <tr th:each="customer : ${customerList}">
+                                                <tr th:each="customer : ${customerList}" th:id="${'tr_'+customer.id}">
                                                     <td class="text-center" th:text="${customer.id}">
                                                     </td>
                                                     <td><strong th:text="${customer.name + ' ' + customer.lastName}"></strong>
@@ -52,6 +52,23 @@
                                                         <button class="btn btn-danger btn-rounded btn-sm" 
                                                         th:onclick="'delete_row(\'' + ${customer.id} + '\');'"><span class="fa fa-times"></span>
                                                         </button>
+
+                                                        <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+                                                        <div class="mb-container">
+                                                            <div class="mb-middle">
+                                                                <div class="mb-title"><span class="fa fa-times"></span> Eliminar <strong>Cliente</strong> ?</div>
+                                                                <div class="mb-content">
+                                                                    <p th:text="${'Esta seguro que desea elimnar a  '+ customer.name + ' ' + customer.lastName + '?'}">Static content</p>                    
+                                                                </div>
+                                                                <div class="mb-footer">
+                                                                    <div class="pull-right">
+                                                                        <button id="mb-yes" class="btn btn-success btn-lg mb-control-yes">Yes</button>
+                                                                        <button id="mb-no" class="btn btn-default btn-lg mb-control-close">No</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -63,29 +80,28 @@
                     </div>
                     <!-- END RESPONSIVE TABLES -->
                 
-                <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
-                    <div class="mb-container">
-                <div class="mb-middle">
-                    <div class="mb-title"><span class="fa fa-times"></span> Remove <strong>Data</strong> ?</div>
-                    <div class="mb-content">
-                        <p>Are you sure you want to remove this row?</p>                    
-                        <p>Press Yes if you sure.</p>
-                    </div>
-                    <div class="mb-footer">
-                        <div class="pull-right">
-                            <button class="btn btn-success btn-lg mb-control-yes">Yes</button>
-                            <button class="btn btn-default btn-lg mb-control-close">No</button>
-                        </div>
-                    </div>
-                </div>
-                    </div>
-                </div>
-
                 <script type="text/javascript">
-                    function delete_row(row) {
+                    function delete_row(c_id) {
                         var box = $("#mb-remove-row");
+
                         box.addClass("open");
-                        console.log(row);
+                        //var id = '__'+row+'__';
+                        console.log(c_id);
+
+                        $('#mb-yes, #mb-no').click(function () {
+                           if (this.id == 'mb-yes') {
+                                $.ajax({
+                                    type: "GET",
+                                    url: "customerDelete/" + c_id,
+                                    //data: row,       
+                                    success:function(data) {
+                                         alert("El cliente se ha eliminado!");
+                                         $('tbody tr#tr_'+c_id).fadeOut(300, function() { $(this).remove(); });;
+                                    }
+                                });
+                            }
+                            box.removeClass("open");
+                        });
                     }
                 </script>
                 </div> 

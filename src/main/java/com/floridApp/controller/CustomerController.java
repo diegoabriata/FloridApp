@@ -19,7 +19,7 @@ public class CustomerController{
 	@Autowired
 	CustomerService customerService;
 	
-	@RequestMapping(value="/list", method=RequestMethod.GET)
+	@RequestMapping(value= {"/","/list"}, method=RequestMethod.GET)
 	public String customersList( Model model) {
 		model.addAttribute("customerList", customerService.getAllCustomer());		
 		return "home/customer_list";
