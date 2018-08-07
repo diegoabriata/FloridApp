@@ -16,7 +16,7 @@ public class Barrel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String type;
+	private Double liters;
 	@ManyToMany
 	@JoinTable(name="sale_barrel",
 	joinColumns=@JoinColumn(name="barrel_id"),
@@ -29,13 +29,12 @@ public class Barrel {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getType() {
-		return type;
+	public Double getLiters() {
+		return liters;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setLiters(Double liters) {
+		this.liters = liters;
 	}
-	
 	public Set<Sale> getSales() {
 		return sales;
 	}
@@ -44,6 +43,6 @@ public class Barrel {
 	}
 	@Override
 	public String toString() {
-		return "Barrel [id=" + id + ", type=" + type + ", sales=" + sales + "]";
+		return "Barrel [id=" + id + ", liters=" + liters + ", sales=" + sales + "]";
 	}
 }
