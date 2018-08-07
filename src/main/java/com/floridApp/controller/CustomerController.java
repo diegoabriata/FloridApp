@@ -22,7 +22,7 @@ public class CustomerController{
 	@RequestMapping(value= {"/","/list"}, method=RequestMethod.GET)
 	public String customersList( Model model) {
 		model.addAttribute("customerList", customerService.getAllCustomer());		
-		return "home/customer_list";
+		return "customer/customer_list";
 	}
 	
 	@RequestMapping(value={"/customerEdit","/customerEdit/{id}"}, method = RequestMethod.GET)
@@ -33,14 +33,14 @@ public class CustomerController{
 		} else {
 			model.addAttribute("customer", new Customer());
 		}
-		return "home/customer_addOrUpdate";
+		return "customer/customer_addOrUpdate";
 	}
 	@RequestMapping(value={"/customerEdit"}, method = RequestMethod.POST)
 	public String customerEdit(Model model, Customer customer) {
 		
 		customerService.saveOrUpdate(customer);
 		model.addAttribute("customerList", customerService.getAllCustomer());
-		return "home/customer_list";
+		return "customer/customer_list";
 	}
 	
 	@RequestMapping(value="/customerDelete/{id}", method = RequestMethod.GET)
@@ -48,7 +48,7 @@ public class CustomerController{
 		
 		customerService.deleteCustomer(id);
 		model.addAttribute("customerList", customerService.getAllCustomer());
-		return "home/customer_list";
+		return "customer/customer_list";
 	}
 	
 	/*@RequestMapping(value="/addCustomer/", method=RequestMethod.GET)

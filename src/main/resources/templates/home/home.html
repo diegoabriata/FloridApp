@@ -25,7 +25,7 @@
             <!-- END PAGE SIDEBAR -->
             
             <!-- PAGE CONTENT -->
-            <div class="page-content">
+            <div class="page-content" >
                 
                 <!-- START X-NAVIGATION VERTICAL -->
                 <ul th:replace="fragments/navigation-vertical :: x-navigation-vertical"></ul>
@@ -34,7 +34,7 @@
                 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
                     <li><a th:href="@{/home}">Home</a></li>                    
-                    <li class="active">Dashboard</li>
+                    <li class="active" data-layout-fragment="common-breadcrumb"></li>
                 </ul>
                 <!-- END BREADCRUMB -->                       
                 

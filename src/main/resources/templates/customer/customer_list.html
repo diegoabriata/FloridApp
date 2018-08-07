@@ -2,6 +2,8 @@
 <html  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   data-layout-decorate="~{home/home}">
     <body>
+        <li class="active" data-layout-fragment="common-breadcrumb"><a th:href="@{/customer/}"></a>Clientes</li>
+        
         <!-- START PAGE CONTAINER -->
          <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap" data-layout-fragment="content">
@@ -36,7 +38,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>                                            
-                                                <tr th:each="customer : ${customerList}" th:id="${'tr_'+customer.id}">
+                                                <tr th:each="customer : ${customerList}">
                                                     <td class="text-center" th:text="${customer.id}">
                                                     </td>
                                                     <td><strong th:text="${customer.name + ' ' + customer.lastName}"></strong>
@@ -49,27 +51,41 @@
                                                         <a th:href="@{/customer/customerEdit/__${customer.id}__}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span>
                                                         </a>
                                                         
-                                                        <button class="btn btn-danger btn-rounded btn-sm" 
-                                                        th:onclick="'delete_row(\'' + ${customer.id} + '\');'"><span class="fa fa-times"></span>
-                                                        </button>
+                                                        <a class="btn btn-danger btn-rounded btn-sm" data-toggle="modal" data-target="#modal-delete"
+				                                           th:attr="data-target='#modal-delete'+${customer.id}">
+				                                            <span class="fa fa-times"></span>
+				                                        </a>
+                                                        
+											         </td>
+                                                         <!--start permanently delete modal-->
+                                    <div class="modal modal-delete" th:id="modal-delete+${customer.id}">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-hidden="true">×
+                                                    </button>
+                                                    <h3 id="delModalLabel">Confirmación</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="error-text" th:text="${'Esta seguro que desea elimnar a  '+ customer.name + ' ' + customer.lastName + '?'}"><strong></strong></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn " data-dismiss="modal" aria-hidden="true">
+                                                        Cancelar
+                                                    </button>
+                                                    <a th:href="@{/customer/customerDelete/__${customer.id}__}">
+                                                        <span class="btn btn-danger" value="delete">Eliminar</span></a>
 
-                                                        <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
-                                                        <div class="mb-container">
-                                                            <div class="mb-middle">
-                                                                <div class="mb-title"><span class="fa fa-times"></span> Eliminar <strong>Cliente</strong> ?</div>
-                                                                <div class="mb-content">
-                                                                    <p th:text="${'Esta seguro que desea elimnar a  '+ customer.name + ' ' + customer.lastName + '?'}">Static content</p>                    
-                                                                </div>
-                                                                <div class="mb-footer">
-                                                                    <div class="pull-right">
-                                                                        <button id="mb-yes" class="btn btn-success btn-lg mb-control-yes">Yes</button>
-                                                                        <button id="mb-no" class="btn btn-default btn-lg mb-control-close">No</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    <!--end delete modal-->
+	                                                    
+                                                     
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -80,7 +96,7 @@
                     </div>
                     <!-- END RESPONSIVE TABLES -->
                 
-                <script type="text/javascript">
+                <!-- <script type="text/javascript">
                     function delete_row(c_id) {
                         var box = $("#mb-remove-row");
 
@@ -88,8 +104,7 @@
                         //var id = '__'+row+'__';
                         console.log(c_id);
 
-                        $('#mb-yes, #mb-no').click(function () {
-                           if (this.id == 'mb-yes') {
+                        $('#mb-yes').click(function () {
                                 $.ajax({
                                     type: "GET",
                                     url: "customerDelete/" + c_id,
@@ -99,13 +114,12 @@
                                          $('tbody tr#tr_'+c_id).fadeOut(300, function() { $(this).remove(); });;
                                     }
                                 });
-                            }
                             box.removeClass("open");
                         });
                     }
-                </script>
+                </script> -->
                 </div> 
-
+		
                 <!-- END PAGE CONTENT WRAPPER -->
         <!-- END PAGE CONTAINER -->  
     </body>

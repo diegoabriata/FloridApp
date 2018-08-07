@@ -33,7 +33,7 @@ public class Customer {
 	private String phone;
 	
 	@Column(name = "dni")
-	private int dni;
+	private Integer dni;
 	
 	@Column(name = "company")
 	private String company;
@@ -77,12 +77,12 @@ public class Customer {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	public int getDni() {
+	
+	public Integer getDni() {
 		return dni;
 	}
 
-	public void setDni(int dni) {
+	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
 
@@ -115,4 +115,5 @@ public class Customer {
 		return "Customer [id=" + id + ", name=" + name + ", lastName=" + lastName + ", phone=" + phone + ", dni=" + dni
 				+ ", company=" + company + ", email=" + email + ", saleList=" + saleList + "]";
 	}
+
 }

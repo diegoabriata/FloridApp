@@ -1,0 +1,91 @@
+             
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  data-layout-decorate="~{home/home}">
+    <body>
+        <!-- START PAGE CONTAINER -->
+         <!-- PAGE CONTENT WRAPPER -->
+                <div class="page-content-wrap" data-layout-fragment="content">
+                    <!-- START RESPONSIVE TABLES -->
+                    <div class="row">
+                        <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><strong>Clientes</strong></h3>
+                                        <ul class="panel-controls">
+                                            <li><a type="button" th:href="@{/customer/}" class="btn btn-info btn-rounded">Ver Listado</a></li>
+                                        </ul>
+                                    </div>
+                            <form id="jvalidate" class="form-horizontal" th:action="@{/customer/customerEdit}" method="POST">
+                                     <input th:type="hidden" name="id" th:field="${customer.id}" />
+                                    <div class="panel-body form-group-separated">
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">DNI</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                    <input type="text" class="form-control" th:field="${customer.dni}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">Nombre</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                    <input type="text" class="form-control" th:field="${customer.name}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">Apellido</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                    <input type="text" class="form-control" th:field="${customer.lastName}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">Telefono</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                    <input type="text" class="form-control" th:field="${customer.phone}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">Email</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                    <input type="text" class="form-control" th:field="${customer.email}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">Empresa</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                    <input type="text" class="form-control" th:field="${customer.company}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <!-- <button th:class="btn btn-default">Limpiar Formulario</button>   -->      
+                                        <button class="btn btn-primary pull-right" type="submit">Guardar</button>
+                                    </div>
+                                </div>
+                            </form>  
+                        </div>
+                    </div>
+                    <!-- END RESPONSIVE TABLES -->
+                </div> 
+
+                <!-- END PAGE CONTENT WRAPPER -->
+        <!-- END PAGE CONTAINER -->  
+    </body>
+</html>
