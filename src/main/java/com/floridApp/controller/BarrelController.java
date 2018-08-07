@@ -17,10 +17,10 @@ public class BarrelController {
 	@Autowired
 	BarrelService barrelService;
 	
-	@RequestMapping(value= {"/","/list"}, method=RequestMethod.GET)
+	@RequestMapping(value= {"/"}, method=RequestMethod.GET)
 	public String barrelList (Model model) {
 		model.addAttribute("barrelList", barrelService.getAllBarrel());
-		return "home/barrel_list";
+		return "barrel/barrel_list";
 	}
 	
 	@RequestMapping(value={"/barrelEdit","/barrelEdit/{id}"}, method = RequestMethod.GET)
@@ -31,7 +31,7 @@ public class BarrelController {
 		} else {
 			model.addAttribute("barrel", new Barrel());
 		}
-		return "home/barrel_addOrUpdate";
+		return "barrel/barrel_addOrUpdate";
 	}
 	
 	@RequestMapping(value={"/barrelEdit"}, method = RequestMethod.POST)
@@ -41,7 +41,7 @@ public class BarrelController {
 		return "redirect:/barrel/";
 	}
 	
-	@RequestMapping(value="/barrelDelete/{id}", method = RequestMethod.POST)
+	@RequestMapping(value="/barrelDelete/{id}", method = RequestMethod.GET)
 	public String barrelDelete(Model model, @PathVariable(required = true, name = "id")Long id) {
 		barrelService.deleteBarrel(id);
 		model.addAttribute("barrelList", barrelService.getAllBarrel());
