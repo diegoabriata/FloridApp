@@ -24,8 +24,8 @@
                                 </div>
 
                                 <div class="panel-body panel-body-table">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-actions">
+                                     <div class="table-responsive">
+                                         <table id="example" class="table table-bordered table-hover table-striped">
                                             <thead>
                                                 <tr>
                                                     <th width="50">id</th>
@@ -122,5 +122,10 @@
 		
                 <!-- END PAGE CONTENT WRAPPER -->
         <!-- END PAGE CONTAINER -->  
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
     </body>
 </html>
