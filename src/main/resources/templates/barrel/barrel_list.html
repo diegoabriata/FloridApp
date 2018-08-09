@@ -30,13 +30,16 @@
                                                 <tr>
                                                     <th width="50">id</th>
                                                     <th width="100">Litros</th>
+                                                    <th width="100">acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>                                            
                                                 <tr th:each="barrel : ${barrelList}">
                                                     <td class="text-center" th:text="${barrel.id}">
                                                     </td>
-                                                    <td th:text="${barrel.liters}"></td>
+                                                    <td th:text="${barrel.liters}">
+                                                    </td>
+                                                    <td>
                                                         <a th:href="@{/barrel/barrelEdit/__${barrel.id}__}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span>
                                                         </a>
                                                         
