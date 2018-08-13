@@ -1,7 +1,4 @@
 package com.floridApp.service;
-
-
-
 import com.floridApp.model.User;
 
 public interface UserService {

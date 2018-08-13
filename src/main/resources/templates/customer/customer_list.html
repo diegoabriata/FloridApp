@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="es"  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   data-layout-decorate="~{home/home}">
     <body>
         <li class="active" data-layout-fragment="common-breadcrumb"><a th:href="@{/customer/}"></a>Clientes</li>
@@ -25,7 +25,7 @@
 
                                 <div class="panel-body panel-body-table">
                                      <div class="table-responsive">
-                                         <table id="example" class="table table-bordered table-hover table-striped">
+                                         <table id="customer" class="table datatable">
                                             <thead>
                                                 <tr>
                                                     <th width="50">id</th>
@@ -34,7 +34,7 @@
                                                     <th width="100">DNI</th>
                                                     <th width="100">Empresa</th>
                                                     <th width="100">Email</th>
-                                                    <th width="100">acciones</th>
+                                                    <th width="100">Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>                                            
@@ -48,6 +48,7 @@
                                                     <td th:text="${customer.company}"></td>
                                                     <td th:text="${customer.email}"></td>
                                                     <td>
+                                                        
                                                         <a th:href="@{/customer/customerEdit/__${customer.id}__}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span>
                                                         </a>
                                                         
@@ -122,10 +123,6 @@
 		
                 <!-- END PAGE CONTENT WRAPPER -->
         <!-- END PAGE CONTAINER -->  
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable();
-    } );
-</script>
+
     </body>
 </html>
