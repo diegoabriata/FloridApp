@@ -1,8 +1,9 @@
 package com.floridApp.model;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="customer")
@@ -42,9 +42,8 @@ public class Customer {
 	private String email;
 	
 	//mappedBy: look at the information from the Sale class @JoinColumn
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonIgnore
-	private List<Sale> saleList;
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="customer")
+	private Set<Sale> sales = new HashSet<Sale>(0);
 	
 	public Long getId() {
 		return id;
@@ -102,18 +101,17 @@ public class Customer {
 		this.email = email;
 	}
 
-	public List<Sale> getSaleList() {
-		return saleList;
+	public Set<Sale> getSales() {
+		return sales;
 	}
 
-	public void setSaleList(List<Sale> saleList) {
-		this.saleList = saleList;
+	public void setSales(Set<Sale> sales) {
+		this.sales = sales;
 	}
 
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", lastName=" + lastName + ", phone=" + phone + ", dni=" + dni
-				+ ", company=" + company + ", email=" + email + ", saleList=" + saleList + "]";
+				+ ", company=" + company + ", email=" + email + ", sales=" + sales + "]";
 	}
-
 }

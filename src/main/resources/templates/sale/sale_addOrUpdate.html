@@ -1,0 +1,75 @@
+             
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  data-layout-decorate="~{home/home}">
+    <body>
+        <li class="active" data-layout-fragment="common-breadcrumb"><a th:href="@{/sale/}"></a>Ventas</li>
+        <!-- START PAGE CONTAINER -->
+         <!-- PAGE CONTENT WRAPPER -->
+                <div class="page-content-wrap" data-layout-fragment="content">
+                    <!-- START RESPONSIVE TABLES -->
+                    <div class="row">
+                        <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><strong>Ventas</strong></h3>
+                                        <ul class="panel-controls">
+                                            <li><a type="button" th:href="@{/sale/}" class="btn btn-info btn-rounded">Ver Listado</a></li>
+                                        </ul>
+                                    </div>
+                            <form class="form-horizontal" th:action="@{/sale/saleEdit}" method="POST" th:object="${sale}">
+                                     <input th:type="hidden" name="id" th:field="*{id}" />
+                                    <div class="panel-body form-group-separated">
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">Cliente</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                
+                                                <select th:field="*{customer}" 
+	                                            	class="form-control select" data-live-search="true">
+	                                            	<option th:each="customer: ${saleCustomers}" th:value="${customer.id}" th:text="${customer.name + ' ' + customer.lastName + ', Empresa: ' + customer.company}"></option>
+	                                            </select>
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">Fecha</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                    <!-- <input type="text" class="form-control" value="07-07-2014" id="dp-4" data-date="07-07-2014" data-date-format="dd-mm-yyyy" data-date-viewmode="months"/>
+                                                	<span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span> -->
+                                                    <input type="text" id="dp-4" class="form-control" data-date-format="dd-mm-yyyy" data-date-viewmode="days" th:field="*{date}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">Remito</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                    <input type="text" class="form-control" th:field="*{remito}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">Descripción</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                    <textarea type="text" class="form-control" th:field="*{description}"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">Total $</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                    <input type="text" class="form-control" th:field="*{price}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <!-- <button th:class="btn btn-default">Limpiar Formulario</button>   -->      
+                                        <button class="btn btn-primary pull-right" type="submit">Guardar</button>
+                                    </div>
+                                </div>
+                            </form>  
+                        </div>
+                    </div>
+                    <!-- END RESPONSIVE TABLES -->
+                </div> 
+
+                <!-- END PAGE CONTENT WRAPPER -->
+        <!-- END PAGE CONTAINER -->  
+    </body>
+</html>

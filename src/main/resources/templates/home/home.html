@@ -47,604 +47,620 @@
            			
                     
                     <div class="row">
-                        <div class="col-md-12">
-                            
-                            <!-- START DATATABLE EXPORT -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">DataTable Export</h3>
-                                    <div class="btn-group pull-right">
-                                        <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'json',escape:'false'});"><img src='img/icons/json.png' width="24"/> JSON</a></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img src='img/icons/json.png' width="24"/> JSON (ignoreColumn)</a></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'json',escape:'true'});"><img src='img/icons/json.png' width="24"/> JSON (with Escape)</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'xml',escape:'false'});"><img src='img/icons/xml.png' width="24"/> XML</a></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'sql'});"><img src='img/icons/sql.png' width="24"/> SQL</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'csv',escape:'false'});"><img src='img/icons/csv.png' width="24"/> CSV</a></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'txt',escape:'false'});"><img src='img/icons/txt.png' width="24"/> TXT</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'excel',escape:'false'});"><img src='img/icons/xls.png' width="24"/> XLS</a></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'doc',escape:'false'});"><img src='img/icons/word.png' width="24"/> Word</a></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'powerpoint',escape:'false'});"><img src='img/icons/ppt.png' width="24"/> PowerPoint</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'png',escape:'false'});"><img src='img/icons/png.png' width="24"/> PNG</a></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'pdf',escape:'false'});"><img src='img/icons/pdf.png' width="24"/> PDF</a></li>
-                                        </ul>
-                                    </div>                                    
-                                    
-                                </div>
-                                <div class="panel-body">
-                                    <table id="customers2" class="table datatable">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Garrett Winters</td>
-                                                <td>Accountant</td>
-                                                <td>Tokyo</td>
-                                                <td>63</td>
-                                                <td>2011/07/25</td>
-                                                <td>$170,750</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ashton Cox</td>
-                                                <td>Junior Technical Author</td>
-                                                <td>San Francisco</td>
-                                                <td>66</td>
-                                                <td>2009/01/12</td>
-                                                <td>$86,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cedric Kelly</td>
-                                                <td>Senior Javascript Developer</td>
-                                                <td>Edinburgh</td>
-                                                <td>22</td>
-                                                <td>2012/03/29</td>
-                                                <td>$433,060</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Airi Satou</td>
-                                                <td>Accountant</td>
-                                                <td>Tokyo</td>
-                                                <td>33</td>
-                                                <td>2008/11/28</td>
-                                                <td>$162,700</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Brielle Williamson</td>
-                                                <td>Integration Specialist</td>
-                                                <td>New York</td>
-                                                <td>61</td>
-                                                <td>2012/12/02</td>
-                                                <td>$372,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Herrod Chandler</td>
-                                                <td>Sales Assistant</td>
-                                                <td>San Francisco</td>
-                                                <td>59</td>
-                                                <td>2012/08/06</td>
-                                                <td>$137,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rhona Davidson</td>
-                                                <td>Integration Specialist</td>
-                                                <td>Tokyo</td>
-                                                <td>55</td>
-                                                <td>2010/10/14</td>
-                                                <td>$327,900</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Colleen Hurst</td>
-                                                <td>Javascript Developer</td>
-                                                <td>San Francisco</td>
-                                                <td>39</td>
-                                                <td>2009/09/15</td>
-                                                <td>$205,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sonya Frost</td>
-                                                <td>Software Engineer</td>
-                                                <td>Edinburgh</td>
-                                                <td>23</td>
-                                                <td>2008/12/13</td>
-                                                <td>$103,600</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jena Gaines</td>
-                                                <td>Office Manager</td>
-                                                <td>London</td>
-                                                <td>30</td>
-                                                <td>2008/12/19</td>
-                                                <td>$90,560</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Quinn Flynn</td>
-                                                <td>Support Lead</td>
-                                                <td>Edinburgh</td>
-                                                <td>22</td>
-                                                <td>2013/03/03</td>
-                                                <td>$342,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Charde Marshall</td>
-                                                <td>Regional Director</td>
-                                                <td>San Francisco</td>
-                                                <td>36</td>
-                                                <td>2008/10/16</td>
-                                                <td>$470,600</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Haley Kennedy</td>
-                                                <td>Senior Marketing Designer</td>
-                                                <td>London</td>
-                                                <td>43</td>
-                                                <td>2012/12/18</td>
-                                                <td>$313,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tatyana Fitzpatrick</td>
-                                                <td>Regional Director</td>
-                                                <td>London</td>
-                                                <td>19</td>
-                                                <td>2010/03/17</td>
-                                                <td>$385,750</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Michael Silva</td>
-                                                <td>Marketing Designer</td>
-                                                <td>London</td>
-                                                <td>66</td>
-                                                <td>2012/11/27</td>
-                                                <td>$198,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Paul Byrd</td>
-                                                <td>Chief Financial Officer (CFO)</td>
-                                                <td>New York</td>
-                                                <td>64</td>
-                                                <td>2010/06/09</td>
-                                                <td>$725,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gloria Little</td>
-                                                <td>Systems Administrator</td>
-                                                <td>New York</td>
-                                                <td>59</td>
-                                                <td>2009/04/10</td>
-                                                <td>$237,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bradley Greer</td>
-                                                <td>Software Engineer</td>
-                                                <td>London</td>
-                                                <td>41</td>
-                                                <td>2012/10/13</td>
-                                                <td>$132,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Dai Rios</td>
-                                                <td>Personnel Lead</td>
-                                                <td>Edinburgh</td>
-                                                <td>35</td>
-                                                <td>2012/09/26</td>
-                                                <td>$217,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jenette Caldwell</td>
-                                                <td>Development Lead</td>
-                                                <td>New York</td>
-                                                <td>30</td>
-                                                <td>2011/09/03</td>
-                                                <td>$345,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Yuri Berry</td>
-                                                <td>Chief Marketing Officer (CMO)</td>
-                                                <td>New York</td>
-                                                <td>40</td>
-                                                <td>2009/06/25</td>
-                                                <td>$675,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Caesar Vance</td>
-                                                <td>Pre-Sales Support</td>
-                                                <td>New York</td>
-                                                <td>21</td>
-                                                <td>2011/12/12</td>
-                                                <td>$106,450</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Doris Wilder</td>
-                                                <td>Sales Assistant</td>
-                                                <td>Sidney</td>
-                                                <td>23</td>
-                                                <td>2010/09/20</td>
-                                                <td>$85,600</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Angelica Ramos</td>
-                                                <td>Chief Executive Officer (CEO)</td>
-                                                <td>London</td>
-                                                <td>47</td>
-                                                <td>2009/10/09</td>
-                                                <td>$1,200,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gavin Joyce</td>
-                                                <td>Developer</td>
-                                                <td>Edinburgh</td>
-                                                <td>42</td>
-                                                <td>2010/12/22</td>
-                                                <td>$92,575</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jennifer Chang</td>
-                                                <td>Regional Director</td>
-                                                <td>Singapore</td>
-                                                <td>28</td>
-                                                <td>2010/11/14</td>
-                                                <td>$357,650</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Brenden Wagner</td>
-                                                <td>Software Engineer</td>
-                                                <td>San Francisco</td>
-                                                <td>28</td>
-                                                <td>2011/06/07</td>
-                                                <td>$206,850</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fiona Green</td>
-                                                <td>Chief Operating Officer (COO)</td>
-                                                <td>San Francisco</td>
-                                                <td>48</td>
-                                                <td>2010/03/11</td>
-                                                <td>$850,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Shou Itou</td>
-                                                <td>Regional Marketing</td>
-                                                <td>Tokyo</td>
-                                                <td>20</td>
-                                                <td>2011/08/14</td>
-                                                <td>$163,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Michelle House</td>
-                                                <td>Integration Specialist</td>
-                                                <td>Sidney</td>
-                                                <td>37</td>
-                                                <td>2011/06/02</td>
-                                                <td>$95,400</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Suki Burks</td>
-                                                <td>Developer</td>
-                                                <td>London</td>
-                                                <td>53</td>
-                                                <td>2009/10/22</td>
-                                                <td>$114,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Prescott Bartlett</td>
-                                                <td>Technical Author</td>
-                                                <td>London</td>
-                                                <td>27</td>
-                                                <td>2011/05/07</td>
-                                                <td>$145,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gavin Cortez</td>
-                                                <td>Team Leader</td>
-                                                <td>San Francisco</td>
-                                                <td>22</td>
-                                                <td>2008/10/26</td>
-                                                <td>$235,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Martena Mccray</td>
-                                                <td>Post-Sales support</td>
-                                                <td>Edinburgh</td>
-                                                <td>46</td>
-                                                <td>2011/03/09</td>
-                                                <td>$324,050</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Unity Butler</td>
-                                                <td>Marketing Designer</td>
-                                                <td>San Francisco</td>
-                                                <td>47</td>
-                                                <td>2009/12/09</td>
-                                                <td>$85,675</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Howard Hatfield</td>
-                                                <td>Office Manager</td>
-                                                <td>San Francisco</td>
-                                                <td>51</td>
-                                                <td>2008/12/16</td>
-                                                <td>$164,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Hope Fuentes</td>
-                                                <td>Secretary</td>
-                                                <td>San Francisco</td>
-                                                <td>41</td>
-                                                <td>2010/02/12</td>
-                                                <td>$109,850</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Vivian Harrell</td>
-                                                <td>Financial Controller</td>
-                                                <td>San Francisco</td>
-                                                <td>62</td>
-                                                <td>2009/02/14</td>
-                                                <td>$452,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Timothy Mooney</td>
-                                                <td>Office Manager</td>
-                                                <td>London</td>
-                                                <td>37</td>
-                                                <td>2008/12/11</td>
-                                                <td>$136,200</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jackson Bradshaw</td>
-                                                <td>Director</td>
-                                                <td>New York</td>
-                                                <td>65</td>
-                                                <td>2008/09/26</td>
-                                                <td>$645,750</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Olivia Liang</td>
-                                                <td>Support Engineer</td>
-                                                <td>Singapore</td>
-                                                <td>64</td>
-                                                <td>2011/02/03</td>
-                                                <td>$234,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bruno Nash</td>
-                                                <td>Software Engineer</td>
-                                                <td>London</td>
-                                                <td>38</td>
-                                                <td>2011/05/03</td>
-                                                <td>$163,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sakura Yamamoto</td>
-                                                <td>Support Engineer</td>
-                                                <td>Tokyo</td>
-                                                <td>37</td>
-                                                <td>2009/08/19</td>
-                                                <td>$139,575</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Thor Walton</td>
-                                                <td>Developer</td>
-                                                <td>New York</td>
-                                                <td>61</td>
-                                                <td>2013/08/11</td>
-                                                <td>$98,540</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Finn Camacho</td>
-                                                <td>Support Engineer</td>
-                                                <td>San Francisco</td>
-                                                <td>47</td>
-                                                <td>2009/07/07</td>
-                                                <td>$87,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Serge Baldwin</td>
-                                                <td>Data Coordinator</td>
-                                                <td>Singapore</td>
-                                                <td>64</td>
-                                                <td>2012/04/09</td>
-                                                <td>$138,575</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Zenaida Frank</td>
-                                                <td>Software Engineer</td>
-                                                <td>New York</td>
-                                                <td>63</td>
-                                                <td>2010/01/04</td>
-                                                <td>$125,250</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Zorita Serrano</td>
-                                                <td>Software Engineer</td>
-                                                <td>San Francisco</td>
-                                                <td>56</td>
-                                                <td>2012/06/01</td>
-                                                <td>$115,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jennifer Acosta</td>
-                                                <td>Junior Javascript Developer</td>
-                                                <td>Edinburgh</td>
-                                                <td>43</td>
-                                                <td>2013/02/01</td>
-                                                <td>$75,650</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cara Stevens</td>
-                                                <td>Sales Assistant</td>
-                                                <td>New York</td>
-                                                <td>46</td>
-                                                <td>2011/12/06</td>
-                                                <td>$145,600</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Hermione Butler</td>
-                                                <td>Regional Director</td>
-                                                <td>London</td>
-                                                <td>47</td>
-                                                <td>2011/03/21</td>
-                                                <td>$356,250</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Lael Greer</td>
-                                                <td>Systems Administrator</td>
-                                                <td>London</td>
-                                                <td>21</td>
-                                                <td>2009/02/27</td>
-                                                <td>$103,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jonas Alexander</td>
-                                                <td>Developer</td>
-                                                <td>San Francisco</td>
-                                                <td>30</td>
-                                                <td>2010/07/14</td>
-                                                <td>$86,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Shad Decker</td>
-                                                <td>Regional Director</td>
-                                                <td>Edinburgh</td>
-                                                <td>51</td>
-                                                <td>2008/11/13</td>
-                                                <td>$183,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Michael Bruce</td>
-                                                <td>Javascript Developer</td>
-                                                <td>Singapore</td>
-                                                <td>29</td>
-                                                <td>2011/06/27</td>
-                                                <td>$183,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Donna Snider</td>
-                                                <td>Customer Support</td>
-                                                <td>New York</td>
-                                                <td>27</td>
-                                                <td>2011/01/25</td>
-                                                <td>$112,000</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>                                    
-                                    
-                                </div>
-                            </div>
-                            <!-- END DATATABLE EXPORT -->                            
-                            
-                            <!-- START DEFAULT TABLE EXPORT -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Export Default Table</h3>
-                                    <div class="pull-right">
-                                        <button class="btn btn-danger toggle" data-toggle="exportTable"><i class="fa fa-bars"></i> Export Data</button>
+                        <div class="col-md-6">
+
+                            <!-- START DEFAULT FORM ELEMENTS -->
+                            <div class="block">
+                                <h4>Default From Inputs</h4>
+                                <form class="form-horizontal" role="form">                                    
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Text</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" value="Some text value..."/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="panel-body" id="exportTable" style="display: none;">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="list-group border-bottom">
-                                                <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'json',escape:'false'});"><img src='img/icons/json.png' width="24"/> JSON</a>
-                                                <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img src='img/icons/json.png' width="24"/> JSON (ignoreColumn)</a>
-                                                <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'json',escape:'true'});"><img src='img/icons/json.png' width="24"/> JSON (with Escape)</a>
-                                            </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Password</label>
+                                        <div class="col-md-10">
+                                            <input type="password" class="form-control" value="password"/>
                                         </div>
-                                        <div class="col-md-2">
-                                            <div class="list-group border-bottom">
-                                                <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'xml',escape:'false'});"><img src='img/icons/xml.png' width="24"/> XML</a>
-                                                <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'sql'});"><img src='img/icons/sql.png' width="24"/> SQL</a>
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Readonly</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" readonly value="Readonly value"/>
                                         </div>
-                                        <div class="col-md-2">
-                                            <div class="list-group border-bottom">
-                                                <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'csv',escape:'false'});"><img src='img/icons/csv.png' width="24"/> CSV</a>
-                                                <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'txt',escape:'false'});"><img src='img/icons/txt.png' width="24"/> TXT</a>
-                                            </div>
+                                    </div>                                    
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Disabled</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" readonly value="Disabled value"/>
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="list-group border-bottom">
-                                                <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'excel',escape:'false'});"><img src='img/icons/xls.png' width="24"/> XLS</a>
-                                                <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'doc',escape:'false'});"><img src='img/icons/word.png' width="24"/> Word</a>
-                                                <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'powerpoint',escape:'false'});"><img src='img/icons/ppt.png' width="24"/> PowerPoint</a>
-                                            </div>
+                                    </div>                                    
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Placeholder</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" placeholder="Fill this field please"/>
                                         </div>
-                                        <div class="col-md-2">
-                                            <div class="list-group border-bottom">
-                                                <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'png',escape:'false'});"><img src='img/icons/png.png' width="24"/> PNG</a>
-                                                <a href="#" class="list-group-item" onClick ="$('#customers').tableExport({type:'pdf',escape:'false'});"><img src='img/icons/pdf.png' width="24"/> PDF</a>
-                                            </div>
+                                    </div>                                                                        
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Text area</label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" rows="5"></textarea>
                                         </div>
-                                    </div>                               
-                                </div>
-                                <div class="panel-body panel-body-table">
-                                    <table id="customers" class="table table-striped">
-                                        <thead>			
-                                            <tr>
-                                                <th>Country</th>
-                                                <th>Population</th>
-                                                <th>Date</th>
-                                                <th>%ge</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Chinna</td>
-                                                <td>1,363,480,000</td>
-                                                <td>March 24, 2014</td>
-                                                <td>19.1</td>
-                                            </tr>
-                                            <tr>
-                                                <td>India</td>
-                                                <td>1,241,900,000</td>
-                                                <td>March 24, 2014</td>
-                                                <td>17.4</td>
-                                            </tr>
-                                            <tr>
-                                                <td>United States</td>
-                                                <td>317,746,000</td>
-                                                <td>March 24, 2014</td>
-                                                <td>4.44</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Indonesia</td>
-                                                <td>249,866,000</td>
-                                                <td>July 1, 2013</td>
-                                                <td>3.49</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Brazil</td>
-                                                <td>201,032,714</td>
-                                                <td>July 1, 2013</td>
-                                                <td>2.81</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>                                    
-                                    
-                                </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Label</label>
+                                        <div class="col-md-10">
+                                            <p class="form-control-static">Static form control</p>
+                                        </div>
+                                    </div>                                    
+                                </form>
                             </div>
-                            <!-- END DEFAULT TABLE EXPORT -->
+                            <!-- END DEFAULT FORM ELEMENTS -->
+
+                            <!-- START CHECKBOXES RADIO AND SELECT -->
+                            <div class="block">
+                                <h4>Checkbox, Radio and Select</h4>
+                                <form role="form">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value=""/>
+                                            Option one is this and that&mdash;be sure to include why it's great
+                                        </label>
+                                    </div>
+                                    <div class="checkbox disabled">
+                                        <label>
+                                            <input type="checkbox" value="" disabled/>
+                                            Option two is disabled
+                                        </label>
+                                    </div>
+
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked/>
+                                            Option one is this and that&mdash;be sure to include why it's great
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"/>
+                                            Option two can be something else and selecting it will deselect option one
+                                        </label>
+                                    </div>
+                                    <div class="radio disabled">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled/>
+                                            Option three is disabled
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">                                        
+                                        <select multiple class="form-control">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>   
+                                    </div>                                    
+                                </form>                
+                            </div>
+                            <!-- END OF CHECKBOXES RADIO AND SELECT -->
+
+                            <!-- FILE INPUT -->
+                            <div class="block">
+                                <h4>Input File</h4>
+                                <form role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Default</label>
+                                        <div class="col-md-10">
+                                            <input type="file"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Styled</label>
+                                        <div class="col-md-10">
+                                            <input type="file" class="fileinput" name="filename1" id="filename1"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label"></label>
+                                        <div class="col-md-10">
+                                            <input type="file" class="fileinput btn-success" name="filename2" id="filename2" title="Custom text and background"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label"></label>
+                                        <div class="col-md-10">
+                                            <input type="file" class="fileinput btn-danger" name="filename3" id="filename3" data-filename-placement="inside" title="File name goes inside"/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- END FILE INPUT -->
+
+                            <!-- START FORM GROUP ELEMENTS -->
+                            <div class="block">
+                                <h4>Form Groups</h4>
+                                <form role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">@</span>
+                                                <input type="text" class="form-control" placeholder="Left side addon"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Right side addon"/>
+                                                <span class="input-group-addon">.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="input-group">                                            
+                                                <span class="input-group-addon">$</span>
+                                                <input type="text" class="form-control" placeholder="Both side addons"/>
+                                                <span class="input-group-addon">.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h5 class="push-up-20">Sizing</h5>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="input-group input-group-lg">                                            
+                                                <span class="input-group-addon">@</span>
+                                                <input type="text" class="form-control" placeholder="Large"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">                                        
+                                            <div class="input-group">
+                                                <span class="input-group-addon">@</span>
+                                                <input type="text" class="form-control" placeholder="Default"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="input-group input-group-sm">
+                                                <span class="input-group-addon">@</span>
+                                                <input type="text" class="form-control" placeholder="Small"/>
+                                            </div>                 
+                                        </div>
+                                    </div>
+
+                                    <h5 class="push-up-20">Checkbox and radio addons</h5>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <input type="checkbox"/>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Checkbox addon"/>
+                                            </div>                 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"/>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Radio addon"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h5 class="push-up-20">Button addons</h5>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button">Go!</button>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Left side button addon"/>
+                                            </div>                 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Right side button addon"/>
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button">Go!</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button">Left</button>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Both side button addon"/>
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button">Right</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- END FORM GROUP ELEMENTS -->
 
                         </div>
+                        <div class="col-md-6">                        
+
+                            <div class="block">
+                                <h4>Styled Checkbox And Radio</h4>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                    <div class="form-group">
+                                        <div class="col-md-4">                                    
+                                            <label class="check"><input type="checkbox" class="icheckbox"/> Default</label>
+                                        </div>
+                                        <div class="col-md-4">                                    
+                                            <label class="check"><input type="checkbox" class="icheckbox" checked="checked"/> Checked</label>
+                                        </div>
+                                        <div class="col-md-4">                                    
+                                            <label class="check"><input type="checkbox" class="icheckbox" disabled/> Disabled</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4">                                    
+                                            <label class="check"><input type="radio" class="iradio" name="iradio"/> Default</label>
+                                        </div>
+                                        <div class="col-md-4">                                    
+                                            <label class="check"><input type="radio" class="iradio" name="iradio" checked="checked"/> Checked</label>
+                                        </div>
+                                        <div class="col-md-4">                                    
+                                            <label class="check"><input type="radio" class="iradio" name="iradio" disabled/> Disabled</label>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- START TAGSINPUT -->
+                            <div class="block">
+                                <h4>Tags Input</h4>
+                                <form role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="text" class="tagsinput" value="First,Second,Third"/>
+                                        </div>
+                                    </div> 
+                                </form>
+                            </div>                        
+                            <!-- END OF TAGSINPUT -->                        
+
+                            <!-- START CHECKBOXES RADIO AND SELECT -->
+                            <div class="block">
+                                <h4>Bootstrap Select</h4>
+                                <form role="form" class="form-horizontal">                                    
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Default</label>
+                                        <div class="col-md-9">                                        
+                                            <select class="form-control select">
+                                                <option>Option 1</option>
+                                                <option>Option 2</option>
+                                                <option>Option 3</option>
+                                                <option>Option 4</option>
+                                                <option>Option 5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">                                        
+                                        <label class="col-md-3 control-label">Multiple</label>
+                                        <div class="col-md-9">                                                                                
+                                            <select multiple class="form-control select">
+                                                <option>Option 1</option>
+                                                <option>Option 2</option>
+                                                <option>Option 3</option>
+                                                <option>Option 4</option>
+                                                <option>Option 5</option>
+                                            </select>   
+                                        </div>
+                                    </div>
+                                    <h5 class="push-up-20">Custom features</h5>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Styled</label>
+                                        <div class="col-md-9">                                                                                
+                                            <select class="form-control select" data-style="btn-success">
+                                                <option>Option 1</option>
+                                                <option>Option 2</option>
+                                                <option>Option 3</option>
+                                                <option>Option 4</option>
+                                                <option>Option 5</option>
+                                            </select>
+                                        </div>
+                                    </div>                                    
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Search</label>
+                                        <div class="col-md-9">                                                                                
+                                            <select class="form-control select" data-live-search="true">
+                                                <option>Lorem ipsum dolor</option>
+                                                <option>Sit amet sicors</option>
+                                                <option>Mostoly stofu tiro</option>
+                                                <option>Vico sante fara</option>
+                                                <option>Delomo ponto si</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>                                                                                        
+                            </div>
+                            <!-- END OF CHECKBOXES RADIO AND SELECT -->
+
+                            <!-- START DATE AND TIME PICKER -->
+                            <div class="block">
+                                <h4>Date and time pickers</h4>                        
+                                <form class="form-horizontal" role="form">                                    
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Default</label>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control datepicker" value="2014-08-04">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">As component</label>
+                                        <div class="col-md-5">
+                                            <div class="input-group date" id="dp-2" data-date="05-07-2014" data-date-format="dd-mm-yyyy">
+                                                <input type="text" class="form-control" value="05-07-2014" disabled="disabled"/>
+                                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Start with year</label>
+                                        <div class="col-md-5">
+                                            <div class="input-group">
+                                                <input type="text" id="dp-3" class="form-control" value="06-06-2014" data-date="06-06-2014" data-date-format="dd-mm-yyyy" data-date-viewmode="years"/>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Start with months</label>
+                                        <div class="col-md-5">
+                                            <div class="input-group" >
+                                                <input type="text" class="form-control" value="07-07-2014" id="dp-4" data-date="07-07-2014" data-date-format="dd-mm-yyyy" data-date-viewmode="months"/>
+                                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h5 class="push-up-20">Timepickers</h5>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Default</label>
+                                        <div class="col-md-5">
+                                            <div class="input-group bootstrap-timepicker">
+                                                <input type="text" class="form-control timepicker"/>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">24 hour mode</label>
+                                        <div class="col-md-5">
+                                            <div class="input-group bootstrap-timepicker">
+                                                <input type="text" class="form-control timepicker24"/>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>                            
+                            </div>      
+                            <!-- END DATE AND TIME PICKER -->
+
+                            <!-- START COLORPICKER -->
+                            <div class="block">
+                                <h4>Colorpickers</h4>
+                                <form class="form-horizontal" role="form">                                    
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Default</label>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control colorpicker" value="#FF4400">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">RGBA mode</label>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control colorpicker_rgba" value="rgba(0,0,0,0.25)" data-color-format="rgba"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">As component</label>
+                                        <div class="col-md-5">
+                                            <div class="input-group color" data-color="rgb(255, 146, 180)" data-color-format="rgb" id="colorpicker">
+                                                <input type="text" class="form-control" readonly/>
+                                                <span class="input-group-addon"><i style="background-color: rgb(255, 146, 180)"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>                                                          
+                            <!-- END COLORPICKER -->
+
+                            <!-- START VERTICAL FORM SAMPLE -->
+                            <div class="block">
+                                <h4>Vertical Form Sample</h4>
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>Email address</label>
+                                        <input type="email" class="form-control"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control"/>
+                                    </div>
+                                    <div class="checkbox pull-left">
+                                        <label><input type="checkbox"> Check me out</label>
+                                    </div>                                    
+                                </form>                            
+                            </div>                        
+                            <!-- END VERTICAL FORM SAMPLE -->
+
+                            <!-- START INLINE FORM SAMPLE -->
+                            <div class="block">
+                                <h4>Inline Form Sample</h4>                                
+                                <form class="form-inline" role="form">
+                                    <div class="form-group">
+                                        <label class="sr-only">Login</label>
+                                        <input type="text" class="form-control" placeholder="Your login"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">                                            
+                                            <label class="sr-only">Password</label>
+                                            <input class="form-control" type="password" placeholder="Your password"/>
+                                        </div>
+                                    </div>                                    
+                                    <button type="submit" class="btn btn-danger">Sign in</button>
+                                </form>                                
+                            </div>
+                            <!-- END INLINE FORM SAMPLE -->
+
+                            <!-- START HORIZONTAL FORM SAMPLE -->
+                            <div class="block">
+                                <h4>Horizontal Form</h4>                               
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Email</label>
+                                        <div class="col-md-10">
+                                            <p class="form-control-static">email@example.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Password</label>
+                                        <div class="col-md-10">
+                                            <input type="password" class="form-control" placeholder="Password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Text area</label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control"></textarea>
+                                        </div>
+                                    </div>                                    
+                                </form>                                                                                         
+                            </div>
+                            <!-- END HORIZONTAL FORM SAMPLE -->                        
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <!-- START FORM VALIDATION STATES -->
+                            <div class="block">                            
+                                <h4>Form Validation States</h4>                                
+                                <div class="col-md-6">
+                                    <div class="form-group has-success">
+                                        <label class="control-label">Input with success</label>
+                                        <input type="text" class="form-control"/>
+                                    </div>
+                                    <div class="form-group has-warning">
+                                        <label class="control-label">Input with warning</label>
+                                        <input type="text" class="form-control"/>
+                                    </div>
+                                    <div class="form-group has-error">
+                                        <label class="control-label">Input with error</label>
+                                        <input type="text" class="form-control"/>
+                                    </div>       
+                                </div>                                
+                                <div class="col-md-6">
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="control-label">Input with success</label>
+                                        <input type="text" class="form-control"/>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                    </div>
+                                    <div class="form-group has-warning has-feedback">
+                                        <label class="control-label">Input with warning</label>
+                                        <input type="text" class="form-control"/>
+                                        <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                    </div>
+                                    <div class="form-group has-error has-feedback">
+                                        <label class="control-label">Input with error</label>
+                                        <input type="text" class="form-control"/>
+                                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>  
+                                </div>                                                                                
+                            </div>
+                            <!-- END FORM VALIDATION STATES -->                        
+
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <!-- START FORM GRID -->
+                            <div class="block">                            
+                                <h4>Form Grid</h4>
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">                                        
+                                        <div class="col-md-12">
+                                            <input type="text" placeholder=".col-md-12" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">                                    
+                                        <div class="col-md-8">
+                                            <input type="text" placeholder=".col-md-8" class="form-control"/>
+                                        </div>               
+                                        <div class="col-md-4">
+                                            <input type="text" placeholder=".col-md-4" class="form-control"/>
+                                        </div>                                                                               
+                                    </div>       
+                                    <div class="form-group">                                    
+                                        <div class="col-md-6">
+                                            <input type="text" placeholder=".col-md-6" class="form-control"/>
+                                        </div>               
+                                        <div class="col-md-3">
+                                            <input type="text" placeholder=".col-md-3" class="form-control"/>
+                                        </div>                                                                               
+                                        <div class="col-md-3">
+                                            <input type="text" placeholder=".col-md-3" class="form-control"/>
+                                        </div>                                        
+                                    </div>                                      
+                                    <div class="form-group">                                    
+                                        <div class="col-md-4">
+                                            <input type="text" placeholder=".col-md-4" class="form-control"/>
+                                        </div>               
+                                        <div class="col-md-4">
+                                            <input type="text" placeholder=".col-md-4" class="form-control"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" placeholder=".col-md-4" class="form-control"/>
+                                        </div>                                                        
+                                    </div>                                                                                    
+                                    <div class="form-group">                                    
+                                        <div class="col-md-2">
+                                            <input type="text" placeholder=".col-md-2" class="form-control"/>
+                                        </div>                                         
+                                        <div class="col-md-5">
+                                            <input type="text" placeholder=".col-md-5" class="form-control"/>
+                                        </div>   
+                                        <div class="col-md-5">
+                                            <input type="text" placeholder=".col-md-5" class="form-control"/>
+                                        </div>                                                                                                                                   
+                                    </div>                                           
+                                </form>                                                                                           
+                            </div>
+                            <!-- END HORIZONTAL FORM SAMPLE -->                        
+
+                        </div>
+
                     </div>
                 </div>  
                 <!-- END PAGE CONTENT WRAPPER -->                           

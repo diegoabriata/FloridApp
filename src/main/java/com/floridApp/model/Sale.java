@@ -3,6 +3,7 @@ package com.floridApp.model;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,15 +15,23 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="sale")
 public class Sale {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false, updatable = false)
 	private Long id;
+	@Column(name = "remito")
 	private String remito;
+	@Column(name = "date")
+	@DateTimeFormat(pattern="dd-MMM-YYYY")
 	private Date date;
+	@Column(name = "price")
 	private Double price;
+	@Column(name = "description")
 	private String description;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
