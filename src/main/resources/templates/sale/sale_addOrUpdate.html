@@ -17,44 +17,49 @@
                                             <li><a type="button" th:href="@{/sale/}" class="btn btn-info btn-rounded">Ver Listado</a></li>
                                         </ul>
                                     </div>
-                            <form class="form-horizontal" th:action="@{/sale/saleEdit}" method="POST" th:object="${sale}">
-                                     <input th:type="hidden" name="id" th:field="*{id}" />
+                            <form class="form-horizontal" th:action="@{/sale/saleEdit}" method="POST">
+                                     <input th:type="hidden" name="id" th:field="${sale.id}" />
                                     <div class="panel-body form-group-separated">
                                         <div class="form-group">
                                             <label class="col-md-3 col-xs-12 control-label">Cliente</label>
                                             <div class="col-md-6 col-xs-12">
                                                 
-                                                <select th:field="*{customer}" 
+                                                <select th:field="${sale.customer}" 
 	                                            	class="form-control select" data-live-search="true">
 	                                            	<option th:each="customer: ${saleCustomers}" th:value="${customer.id}" th:text="${customer.name + ' ' + customer.lastName + ', Empresa: ' + customer.company}"></option>
 	                                            </select>
                                                
                                             </div>
                                         </div>
+                                        <!-- <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">Fecha</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                
+                                                    <input type="text" class="form-control" id="datetimepicker-sale" th:field="*{date}"/>
+                                            </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <label class="col-md-3 col-xs-12 control-label">Fecha</label>
                                             <div class="col-md-6 col-xs-12">
-                                                    <!-- <input type="text" class="form-control" value="07-07-2014" id="dp-4" data-date="07-07-2014" data-date-format="dd-mm-yyyy" data-date-viewmode="months"/>
-                                                	<span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span> -->
-                                                    <input type="text" id="dp-4" class="form-control" data-date-format="dd-mm-yyyy" data-date-viewmode="days" th:field="*{date}"/>
+                                                <input type="text" readonly="readonly" class="form-control datepicker" th:value="${#dates.format(sale.date, 'yyyy-mm-dd')}" name="dateString"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-3 col-xs-12 control-label">Remito</label>
                                             <div class="col-md-6 col-xs-12">
-                                                    <input type="text" class="form-control" th:field="*{remito}"/>
+                                                    <input type="text" class="form-control" th:field="${sale.remito}"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-3 col-xs-12 control-label">Descripción</label>
                                             <div class="col-md-6 col-xs-12">
-                                                    <textarea type="text" class="form-control" th:field="*{description}"></textarea>
+                                                    <textarea type="text" class="form-control" th:field="${sale.description}"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-3 col-xs-12 control-label">Total $</label>
                                             <div class="col-md-6 col-xs-12">
-                                                    <input type="text" class="form-control" th:field="*{price}"/>
+                                                    <input type="text" class="form-control" th:field="${sale.price}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -71,5 +76,7 @@
 
                 <!-- END PAGE CONTENT WRAPPER -->
         <!-- END PAGE CONTAINER -->  
+
+        
     </body>
 </html>

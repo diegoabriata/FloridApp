@@ -47,7 +47,7 @@
         												<strong><span th:text="${customer.name + ' ' + customer.lastName + ' Empresa: ' + customer.company}"/></strong>
         											</span> 
                                                     </td>
-                                                    <td th:text="${#dates.format(sale.date, 'dd-MMM-yyyy')}"></td>
+                                                    <td th:text="${#dates.format(sale.date, 'yyyy-mm-dd')}"></td>
                                          
                                                     <td th:text="${sale.remito}"></td>
                                                     <td th:text="${sale.price}"></td>
@@ -75,7 +75,7 @@
                                                     <h3 id="delModalLabel">Confirmación</h3>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p class="error-text" th:text="${'Esta seguro que desea elimnar la venta con Numero de remito: '+ sale.remito + ' ?'}"><strong></strong></p>
+                                                    <p class="error-text" th:text="${'Esta seguro que desea eliminar la venta con Numero de remito: '+ sale.remito + ' ?'}"><strong></strong></p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button class="btn " data-dismiss="modal" aria-hidden="true">

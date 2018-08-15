@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name="sale")
@@ -26,8 +26,7 @@ public class Sale {
 	private Long id;
 	@Column(name = "remito")
 	private String remito;
-	@Column(name = "date")
-	@DateTimeFormat(pattern="dd-MMM-YYYY")
+	@Column(name = "date", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date date;
 	@Column(name = "price")
 	private Double price;
