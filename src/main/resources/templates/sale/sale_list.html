@@ -47,7 +47,7 @@
         												<strong><span th:text="${customer.name + ' ' + customer.lastName + ' Empresa: ' + customer.company}"/></strong>
         											</span> 
                                                     </td>
-                                                    <td th:text="${#dates.format(sale.date, 'yyyy-mm-dd')}"></td>
+                                                    <td th:text="${#dates.format(sale.date, 'dd/MM/yyyy HH:mm')}"></td>
                                          
                                                     <td th:text="${sale.remito}"></td>
                                                     <td th:text="${sale.price}"></td>

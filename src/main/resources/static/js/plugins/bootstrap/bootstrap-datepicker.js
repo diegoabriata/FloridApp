@@ -21,7 +21,7 @@
  * ========================================================= */
 
 (function($, undefined){
-
+	
 	var $window = $(window);
 
 	function UTCDate(){
@@ -1396,7 +1396,7 @@
 		daysOfWeekDisabled: [],
 		endDate: Infinity,
 		forceParse: true,
-		format: 'dd/mm/yyyy',
+		dateFormat: 'dd/mm/yyyy',
 		keyboardNavigation: true,
 		language: 'en',
 		minViewMode: 0,
@@ -1410,6 +1410,7 @@
 		todayHighlight: false,
 		weekStart: 0
 	};
+	
 	var locale_opts = $.fn.datepicker.locale_opts = [
 		'format',
 		'rtl',

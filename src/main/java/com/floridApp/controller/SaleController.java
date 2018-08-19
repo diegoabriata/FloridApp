@@ -55,7 +55,7 @@ public class SaleController {
 					" id: "+ sale.getId() + " customer: "+ sale.getCustomer() + " date: "+ sale.getDate());
 		}else {
 			
-			SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd");
+			SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	        Date d1 = format1.parse( date );
 	        sale.setDate(d1);
 	        

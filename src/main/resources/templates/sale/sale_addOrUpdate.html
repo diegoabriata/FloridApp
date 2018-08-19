@@ -31,19 +31,16 @@
                                                
                                             </div>
                                         </div>
-                                        <!-- <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">Fecha</label>
-                                            <div class="col-md-6 col-xs-12">
-                                                
-                                                    <input type="text" class="form-control" id="datetimepicker-sale" th:field="*{date}"/>
-                                            </div>
-                                        </div> -->
                                         <div class="form-group">
                                             <label class="col-md-3 col-xs-12 control-label">Fecha</label>
                                             <div class="col-md-6 col-xs-12">
-                                                <input type="text" readonly="readonly" class="form-control datepicker" th:value="${#dates.format(sale.date, 'yyyy-mm-dd')}" name="dateString"/>
+                                                <input type="text" class="form-control" th:value="${#dates.format(#dates.createNow(), 'dd/MM/yyyy HH:mm')}" name="dateString"></input>
                                             </div>
                                         </div>
+                                        
+
+                                        
+
                                         <div class="form-group">
                                             <label class="col-md-3 col-xs-12 control-label">Remito</label>
                                             <div class="col-md-6 col-xs-12">
@@ -77,6 +74,7 @@
                 <!-- END PAGE CONTENT WRAPPER -->
         <!-- END PAGE CONTAINER -->  
 
-        
+
+</script>
     </body>
 </html>
