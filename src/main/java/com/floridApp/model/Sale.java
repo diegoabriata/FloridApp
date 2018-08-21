@@ -2,7 +2,6 @@ package com.floridApp.model;
 
 import java.util.Date;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,12 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-
 
 @Entity
 @Table(name="sale")
@@ -37,13 +33,16 @@ public class Sale {
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
-	@ManyToMany
+	/*@ManyToMany
 	@JoinTable(name="sale_barrel",
 	joinColumns=@JoinColumn(name="sale_id"),
 	inverseJoinColumns=@JoinColumn(name="barrel_id")
 			)
-	private Set<Barrel> barrels;
-
+	private Set<Barrel> barrels;*/
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="sale")
+	private Set<SaleOrder> saleOrderList;
+	
 	public Long getId() {
 		return id;
 	}
@@ -92,12 +91,14 @@ public class Sale {
 		this.customer = customer;
 	}
 
-	public Set<Barrel> getBarrels() {
-		return barrels;
+	public Set<SaleOrder> getSaleOrderList() {
+		return saleOrderList;
 	}
 
-	public void setBarrels(Set<Barrel> barrels) {
-		this.barrels = barrels;
+	public void setSaleOrderList(Set<SaleOrder> saleOrderList) {
+		this.saleOrderList = saleOrderList;
 	}
+
+	
 	
 }

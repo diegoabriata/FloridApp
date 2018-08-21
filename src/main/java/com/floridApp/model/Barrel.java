@@ -1,16 +1,13 @@
 package com.floridApp.model;
 
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 @Entity
 @Table(name="barrel")
 public class Barrel {
@@ -18,12 +15,16 @@ public class Barrel {
 	@Column(name = "id")
 	private Long id;
 	private Double liters;
-	@ManyToMany
+	/*@ManyToMany
 	@JoinTable(name="sale_barrel",
 	joinColumns=@JoinColumn(name="barrel_id"),
 	inverseJoinColumns=@JoinColumn(name="sale_id")
 			)
-	private Set<Sale> sales;
+	private Set<Sale> sales;*/
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="barrel")
+	private Set<SaleOrder> saleOrderList;
+	
 	public Long getId() {
 		return id;
 	}
@@ -36,14 +37,14 @@ public class Barrel {
 	public void setLiters(Double liters) {
 		this.liters = liters;
 	}
-	public Set<Sale> getSales() {
-		return sales;
+	public Set<SaleOrder> getSaleOrderList() {
+		return saleOrderList;
 	}
-	public void setSales(Set<Sale> sales) {
-		this.sales = sales;
+	public void setSaleOrderList(Set<SaleOrder> saleOrderList) {
+		this.saleOrderList = saleOrderList;
 	}
 	@Override
 	public String toString() {
-		return "Barrel [id=" + id + ", liters=" + liters + ", sales=" + sales + "]";
+		return "Barrel [id=" + id + ", liters=" + liters + ", saleOrderList=" + saleOrderList + "]";
 	}
 }
