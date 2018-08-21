@@ -31,16 +31,14 @@
                                                
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">Fecha</label>
+                                        <div><input type="text" th:type="hidden" th:unless="${sale.date}" class="form-control" th:value="${#dates.format(#dates.createNow(), 'dd/MM/yyyy HH:mm')}" name="dateString"/></div>
+                                        <div class="form-group" th:if="${sale.date}">
+                                            <label class="col-md-3 col-xs-12 control-label">Fecha y Hora</label>
                                             <div class="col-md-6 col-xs-12">
-                                                <input type="text" class="form-control" th:value="${#dates.format(#dates.createNow(), 'dd/MM/yyyy HH:mm')}" name="dateString"></input>
+                                                <input type="text" id="datetimepicker" class="form-control" th:value="${#dates.format(sale.date, 'dd/MM/yyyy HH:mm')}" name="dateString"></input>
                                             </div>
                                         </div>
                                         
-
-                                        
-
                                         <div class="form-group">
                                             <label class="col-md-3 col-xs-12 control-label">Remito</label>
                                             <div class="col-md-6 col-xs-12">

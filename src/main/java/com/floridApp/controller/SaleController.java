@@ -38,9 +38,11 @@ public class SaleController {
 	public String saleEditForm(Model model, @PathVariable(required = false, name = "id") Long id) {
 		
 		if (null != id) {
+			
 			model.addAttribute("sale", saleService.getSaleById(id));
 			model.addAttribute("saleCustomers", customerService.getAllCustomer());
 		} else {
+
 			model.addAttribute("saleCustomers", customerService.getAllCustomer());
 			model.addAttribute("sale", new Sale());
 		}
