@@ -16,7 +16,7 @@
                                     <h3 class="panel-title">Ventas</h3>
                                     <ul class="panel-controls">
                                         <li>
-                                            <a th:href="@{/sale/saleEdit}"
+                                            <a th:href="@{/saleOrder/saleOrderEdit}"
                                                 class="btn btn-success fa fa-plus">
                                             </a>
                                         </li>        
@@ -32,7 +32,7 @@
                                                     <th>Cliente</th>
                                                     <th width="100">Fecha y Hora</th>
                                                     <th width="100">Remito</th>
-                                                    <th width="100">Precio</th>
+                                                    <th width="100">Total</th>
                                                     <th width="100">Descripción</th>
                                                     <!-- faltan barriles -->
                                                     <th width="100">Acciones</th>
@@ -50,12 +50,12 @@
                                                     <td th:text="${#dates.format(sale.date, 'dd/MM/yyyy HH:mm')}"></td>
                                          
                                                     <td th:text="${sale.remito}"></td>
-                                                    <td th:text="${sale.price}"></td>
+                                                    <td th:text="${'$'+sale.total}"></td>
                                                     <td th:text="${sale.description}"></td>
                                                     <!-- <td th:text="${}"></td> -->
                                                     <td>
                                                             
-                                                        <a th:href="@{/sale/saleEdit/__${sale.id}__}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span>
+                                                        <a th:href="@{/saleOrder/saleOrderEdit/__${sale.id}__}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span>
                                                         </a>
                                                         
                                                         <a class="btn btn-danger btn-rounded btn-sm" data-toggle="modal" data-target="#modal-delete"

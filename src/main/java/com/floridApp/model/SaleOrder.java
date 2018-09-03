@@ -22,6 +22,9 @@ public class SaleOrder {
 	@Column(name = "type_beer")
 	private String typeBeer;
 	
+	@Column(name="beer_price")
+	private Double beerPrice;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "sale_id")
 	private Sale sale;
@@ -45,6 +48,14 @@ public class SaleOrder {
 	public void setTypeBeer(String typeBeer) {
 		this.typeBeer = typeBeer;
 	}
+	
+	public Double getBeerPrice() {
+		return beerPrice;
+	}
+
+	public void setBeerPrice(Double beerPrice) {
+		this.beerPrice = beerPrice;
+	}
 
 	public Sale getSale() {
 		return sale;
@@ -64,6 +75,7 @@ public class SaleOrder {
 
 	@Override
 	public String toString() {
-		return "SaleBarrel [id=" + id + ", typeBeer=" + typeBeer + ", sale=" + sale + ", barrel=" + barrel + "]";
+		return "SaleOrder [id=" + id + ", typeBeer=" + typeBeer + ", beerPrice=" + beerPrice + ", sale=" + sale
+				+ ", barrel=" + barrel + "]";
 	}
 }

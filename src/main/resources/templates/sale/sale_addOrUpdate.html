@@ -1,68 +1,115 @@
-             
+
 <!DOCTYPE html>
 <html  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  data-layout-decorate="~{home/home}">
-    <body>
-        <li class="active" data-layout-fragment="common-breadcrumb"><a th:href="@{/sale/}"></a>Ventas</li>
-        <!-- START PAGE CONTAINER -->
-         <!-- PAGE CONTENT WRAPPER -->
-                <div class="page-content-wrap" data-layout-fragment="content">
-                    <!-- START RESPONSIVE TABLES -->
-                    <div class="row">
-                        <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title"><strong>Ventas</strong></h3>
-                                        <ul class="panel-controls">
-                                            <li><a type="button" th:href="@{/sale/}" class="btn btn-info btn-rounded">Ver Listado</a></li>
-                                        </ul>
-                                    </div>
-                            <form class="form-horizontal" th:action="@{/sale/saleEdit}" method="POST">
-                                     <input th:type="hidden" name="id" th:field="${sale.id}" />
-                                    <div class="panel-body form-group-separated">
-                                        <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">Cliente</label>
-                                            <div class="col-md-6 col-xs-12">
-                                                
-                                                <select th:field="${sale.customer}" 
-	                                            	class="form-control select" data-live-search="true">
-	                                            	<option th:each="customer: ${saleCustomers}" th:value="${customer.id}" th:text="${customer.name + ' ' + customer.lastName + ', Empresa: ' + customer.company}"></option>
-	                                            </select>
-                                               
+data-layout-decorate="~{home/home}">
+<body>
+    <li class="active" data-layout-fragment="common-breadcrumb"><a th:href="@{/sale/}"></a>Ventas</li>
+    <!-- START PAGE CONTAINER -->
+    <!-- PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrap" data-layout-fragment="content">
+        <!-- START RESPONSIVE TABLES -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title"><strong>Ventas</strong></h2>
+                        <ul class="panel-controls">
+                            <li><a type="button" th:href="@{/sale/}" class="btn btn-info btn-rounded">Ver Listado</a></li>
+                        </ul>
+                    </div>
+                    <form class="form-horizontal" th:action="@{/sale/saleEdit}"     method="POST">
+                       <input th:type="hidden" name="id" th:field="${sale.id}" />
+                       <div class="panel-body form-group-separated">
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Cliente</label>
+                            <div class="col-md-6 col-xs-12">
+
+                                <select th:field="${sale.customer}" 
+                                class="form-control select" data-live-search="true">
+                                <option th:each="customer: ${saleCustomers}" th:value="${customer.id}" th:text="${customer.name + ' ' + customer.lastName + ', Empresa: ' + customer.company}"></option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div><input type="text" th:type="hidden" th:unless="${sale.date}" class="form-control" th:value="${#dates.format(#dates.createNow(), 'dd/MM/yyyy HH:mm')}" name="dateString"/></div>
+                    <div class="form-group" th:if="${sale.date}">
+                        <label class="col-md-3 col-xs-12 control-label">Fecha y Hora</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="text" id="datetimepicker" class="form-control" th:value="${#dates.format(sale.date, 'dd/MM/yyyy HH:mm')}" name="dateString"></input>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Remito</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="text" class="form-control" th:field="${sale.remito}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-xs-12 control-label">Descripción</label>
+                        <div class="col-md-6 col-xs-12">
+                            <textarea type="text" class="form-control" th:field="${sale.description}"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><h3>Listado de Barriles</h3>
+                            <div class="well clearfix">
+                                <div id="czContainer">
+                                    <div id="first">
+                                        <div class="recordset">
+                                            <div class="fieldRow clearfix">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label>
+                                                            Barril<span class="asteriskField">*</span>
+                                                        </label><div class="controls ">
+                                                            <select th:field="${saleOrder.barrel}" 
+                                                            class="selectpicker form-control" data-live-search="true" id="id_stock_1_unit" name="stock_1_unit">
+                                                            <option th:each="barrel: ${barrelList}" selected="selected" th:value="${barrel.id}" th:text="${'Barril Nro:'+ barrel.id + ' - ' + barrel.liters + 'Lts'}"></option>
+                                                        </select>
+                                                        <script type="text/javascript">
+                                                    // it makes able the "data-live-search" after hitting the plus button
+                                                    $('.selectpicker').selectpicker('render')
+                                                    </script>
+                                                    </div>
+                                                </div>
+                                            </div><div class="col-md-3">
+                                                <div id="div_id_stock_1_unit" class="form-group">
+                                                    <label for="id_stock_1_unit" class="control-label  requiredField">
+                                                        Tipo de Cerveza<span class="asteriskField">*</span>
+                                                    </label><div class="controls "><select class="select form-control" id="id_stock_1_unit" name="stock_1_unit"><option value="" selected="selected">---------</option><option value="1">1/2liter</option></select></div>
+                                                </div>
+                                            </div><div class="col-md-3">
+                                                <div id="div_id_stock_1_quantity" class="form-group">
+                                                    <label for="id_stock_1_quantity" class="control-label  requiredField">
+                                                        Precio<span class="asteriskField">*</span>
+                                                    </label><div class="controls "><input class="numberinput form-control" id="id_stock_1_quantity" name="stock_1_quantity" step="0.01" type="number" /> </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div><input type="text" th:type="hidden" th:unless="${sale.date}" class="form-control" th:value="${#dates.format(#dates.createNow(), 'dd/MM/yyyy HH:mm')}" name="dateString"/></div>
-                                        <div class="form-group" th:if="${sale.date}">
-                                            <label class="col-md-3 col-xs-12 control-label">Fecha y Hora</label>
-                                            <div class="col-md-6 col-xs-12">
-                                                <input type="text" id="datetimepicker" class="form-control" th:value="${#dates.format(sale.date, 'dd/MM/yyyy HH:mm')}" name="dateString"></input>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">Remito</label>
-                                            <div class="col-md-6 col-xs-12">
-                                                    <input type="text" class="form-control" th:field="${sale.remito}"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">Descripción</label>
-                                            <div class="col-md-6 col-xs-12">
-                                                    <textarea type="text" class="form-control" th:field="${sale.description}"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">Total $</label>
-                                            <div class="col-md-6 col-xs-12">
-                                                    <input type="text" class="form-control" th:field="${sale.price}"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel-footer">
-                                        <!-- <button th:class="btn btn-default">Limpiar Formulario</button>   -->      
-                                        <button class="btn btn-primary pull-right" type="submit">Guardar</button>
                                     </div>
                                 </div>
+                            </div>  
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Total $</label>
+                            <div class="col-md-6 col-xs-12">
+                                <input type="text" class="form-control" th:field="${sale.total}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- ADD/REMOVE BARRELS -->
+
+                <!-- END ADD/REMOVE BARRELS -->   
+                <div class="panel-footer">    
+                    <button class="btn btn-primary pull-right" type="submit">Guardar</button>
+                </div>
+            </div>
+            
                             </form>  
                         </div>
                     </div>
@@ -70,9 +117,6 @@
                 </div> 
 
                 <!-- END PAGE CONTENT WRAPPER -->
-        <!-- END PAGE CONTAINER -->  
-
-
-</script>
-    </body>
-</html>
+                <!-- END PAGE CONTAINER -->  
+            </body>
+            </html>

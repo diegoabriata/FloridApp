@@ -7,7 +7,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        <link rel="icon" href="favicon.ico" type="/image/x-icon" />
         <!-- END META SECTION -->
         
         <!-- CSS INCLUDE -->        
@@ -16,8 +15,16 @@
         <!--data table-->
         <link href="/css/jquery.dataTable.min.css" rel="stylesheet" />
         <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="/css/jquery/jquery.datetimepicker.css"/>
-                                        
+        <link rel="stylesheet" type="text/css" href="/css/jquery/jquery.datetimepicker.css"/>  
+        <!-- end data table -->                               
+        <head>
+      <!-- JQuery Add/Remove template -->
+        <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+        
+    <!-- Latest compiled and minified CSS -->
+   
+    <!-- JQuery Add/Remove template --> 
+  </head>
     </head>
     <body>
         <!-- START PAGE CONTAINER -->
@@ -46,165 +53,10 @@
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap" data-layout-fragment="content">
            			
-                    <div class="row">
-                        <div class="col-md-6">
+                     <!-- START RESPONSIVE TABLES -->
+                     <!-- <div class="well clearfix">
+                    <!-- END RESPONSIVE TABLES -->
 
-                            <!-- START VALIDATIONENGINE PLUGIN -->
-                            <div class="block">
-                                <h4>Validation Engine</h4>                                
-                                <form id="validate" role="form" class="form-horizontal" action="javascript:alert('Form #validate submited');">                            
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Login:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="validate[required,maxSize[8]] form-control"/>
-                                            <span class="help-block">Required, max size = 8</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Password:</label>
-                                        <div class="col-md-9">
-                                            <input type="password" class="validate[required,minSize[5],maxSize[10]] form-control" id="password"/>
-                                            <span class="help-block">Required, min size = 5, max size = 10</span>
-                                        </div>
-                                    </div>                    
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Confirm:</label>
-                                        <div class="col-md-9">
-                                            <input type="password" class="validate[required,equals[password]] form-control"/>
-                                            <span class="help-block">Required, equals Password</span>
-                                        </div>
-                                    </div>                            
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Age:</label>
-                                        <div class="col-md-9    ">
-                                            <input type="text" class="validate[required,custom[integer],min[18],max[120]] form-control"/>
-                                            <span class="help-block">Required, integer, min value = 18, max = 120</span>
-                                        </div>                        
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Gender:</label>
-                                        <div class="col-md-3">
-                                            <select class="validate[required] select" id="formGender">
-                                                <option value="">Choose option</option>
-                                                <option value="1">Male</option>
-                                                <option value="0">Female</option>
-                                            </select>                           
-                                            <span class="help-block">Required</span>
-                                        </div>                        
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Date of birth:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="validate[required,custom[date]] form-control"/>
-                                            <span class="help-block">Required, date YYYY-MM-DD</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Credit card:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="validate[required,creditCard] form-control"/>
-                                            <span class="help-block">Required, credit card number</span>
-                                        </div>
-                                    </div>             
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Site:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" value="http://" class="validate[required,custom[url]] form-control"/>
-                                            <span class="help-block">Required, url</span>
-                                        </div>
-                                    </div>                              
-                                    <div class="form-group">                        
-                                        <div class="col-md-12">
-                                            <label class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" class="validate[required]" name="terms" value="1"/> Yes, I accept your terms and conditions.
-                                                </label>
-                                            </label>
-                                        </div>
-                                    </div>                                
-                                    <div class="btn-group pull-right">
-                                        <button class="btn btn-primary" type="button" onClick="$('#validate').validationEngine('hide');">Hide prompts</button>
-                                        <button class="btn btn-primary" type="submit">Submit</button>
-                                    </div>                                                                
-                                </form>
-                            </div>                                               
-                            <!-- END VALIDATIONENGINE PLUGIN -->
-
-                        </div>
-                        <div class="col-md-6">                        
-
-                            <!-- START JQUERY VALIDATION PLUGIN -->
-                            <div class="block">
-                                <h4>jQuery Validation</h4>
-                                <form id="jvalidate" role="form" class="form-horizontal" action="javascript:alert('Form #validate2 submited');">
-                                <div class="panel-body">                                    
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Login:</label>  
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="login"/>
-                                            <span class="help-block">min size = 2, max size = 8</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Password:</label>                                        
-                                        <div class="col-md-9">
-                                            <input type="password" class="form-control" name="password" id="password2"/>                                        
-                                            <span class="help-block">min size = 5, max size = 10</span>
-                                        </div>
-                                    </div>                    
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Confirm Password:</label>                                       
-                                        <div class="col-md-9">
-                                            <input type="password" class="form-control" name="re-password"/>
-                                            <span class="help-block">required same value as Password</span>
-                                        </div>
-                                    </div>               
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">E-mail:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" value="" name="email" class="form-control"/>                                        
-                                            <span class="help-block">required email</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">                                        
-                                        <label class="col-md-3 control-label">Age:</label>          
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="age"/>                                        
-                                            <span class="help-block">min size = 18, max size = 100</span>
-                                        </div>
-                                    </div>                                                             
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Date of birth:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control datepicker" name="date"/>
-                                            <span class="help-block">required date</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Credit card:</label>     
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="credit"/>
-                                            <span class="help-block">required credit card</span>
-                                        </div>
-                                    </div>             
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Site:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" value="http://" name="site" class="form-control"/>  
-                                            <span class="help-block">required url</span>
-                                        </div>
-                                    </div>                                                                                        
-                                    <div class="btn-group pull-right">
-                                        <button class="btn btn-primary" type="button" onClick="jvalidate.resetForm();$('#gender').next('.bootstrap-select').removeClass('error').removeClass('valid')">Hide prompts</button>
-                                        <button class="btn btn-primary" type="submit">Submit</button>
-                                    </div>                                                                                                                          
-                                </div>                                               
-                                </form>
-                            <!-- END JQUERY VALIDATION PLUGIN -->
-                            </div>
-                        </div>
-                    </div>
-                    
                 </div>  
                 <!-- END PAGE CONTENT WRAPPER -->                           
             </div>            

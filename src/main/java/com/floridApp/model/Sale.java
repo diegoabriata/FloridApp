@@ -24,8 +24,8 @@ public class Sale {
 	private String remito;
 	@Column(name = "date", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date date;
-	@Column(name = "price")
-	private Double price;
+	@Column(name = "total")
+	private Double total;
 	@Column(name = "description")
 	private String description;
 	
@@ -67,12 +67,12 @@ public class Sale {
 		this.date = date;
 	}
 
-	public Double getPrice() {
-		return price;
+	public Double getTotal() {
+		return total;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setTotal(Double total) {
+		this.total = total;
 	}
 
 	public String getDescription() {
