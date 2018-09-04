@@ -84,7 +84,26 @@ data-layout-decorate="~{home/home}">
                                                 <div id="div_id_stock_1_quantity" class="form-group">
                                                     <label for="id_stock_1_quantity" class="control-label  requiredField">
                                                         Precio<span class="asteriskField">*</span>
-                                                    </label><div class="controls "><input class="numberinput form-control" id="id_stock_1_quantity" name="stock_1_quantity" step="0.01" type="number" /> </div>
+                                                    </label><div class="controls"><input class="numberinput form-control" id="id_stock_1_quantity" name="stock_1_quantity" step="0.01" type="text"/>
+                <script>
+                    /*jQuery Sum textbox*/
+                    // we used jQuery 'keyup' to trigger the computation as the user type
+                    $('.numberinput').keyup(function () {
+ 
+                    // initialize the sum (total price) to zero
+                    var sum = 0;
+     
+                    // we use jQuery each() to loop through all the textbox with 'price' class
+                    // and compute the sum for each loop
+                    $('.numberinput').each(function() {
+                        sum += Number($(this).val());
+                    });
+     
+                    // set the computed value to 'totalPrice' textbox
+                    $('#totalPrice').val(sum);
+                    });
+                </script>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -95,8 +114,9 @@ data-layout-decorate="~{home/home}">
                         <div class="form-group">
                             <label class="col-md-3 col-xs-12 control-label">Total $</label>
                             <div class="col-md-6 col-xs-12">
-                                <input type="text" class="form-control" th:field="${sale.total}"/>
+                                <input type="text" class="form-control" id="totalPrice" th:field="${sale.total}" readonly/>
                             </div>
+                           
                         </div>
                     </div>
                 </div>
