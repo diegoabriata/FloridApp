@@ -24,7 +24,7 @@ public class CustomerController{
 		model.addAttribute("customerList", customerService.getAllCustomer());		
 		return "customer/customer_list";
 	}
-	
+
 	@RequestMapping(value={"/customerEdit","/customerEdit/{id}"}, method = RequestMethod.GET)
 	public String customerEditForm(Model model, @PathVariable(required = false, name = "id") Long id) {
 		
