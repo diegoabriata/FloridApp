@@ -25,51 +25,28 @@ import com.floridApp.service.SaleService;
 public class SaleOrderController {
 	
 	@Autowired
-	SaleOrderService saleOrderService;
-	@Autowired
 	SaleService saleService;
-	@Autowired
-	BarrelService barrelService;
 	@Autowired
 	CustomerService customerService;
 	
+	@Autowired
+	BarrelService barrelService;
 	
-	@RequestMapping(value={"/saleOrderEdit","/saleOrderEdit/{id}"}, method = RequestMethod.GET)
-	public String saleEditForm(Model model, @PathVariable(required = false, name = "id") Long id) {
-		
-		if (null != id) {
-			model.addAttribute("sale", saleService.getSaleById(id));
-			model.addAttribute("saleCustomers", customerService.getAllCustomer());
-			model.addAttribute("barrelList", barrelService.getAllBarrel());
-		} else {
+	@Autowired
+	SaleOrderService saleOrderService; 
 
-			model.addAttribute("saleCustomers", customerService.getAllCustomer());
-			model.addAttribute("barrelList", barrelService.getAllBarrel());
-			model.addAttribute("sale", new Sale());
-			model.addAttribute("saleOrder", new SaleOrder());
-		}
+	@RequestMapping(value={"/saleOrderEdit"}, method = RequestMethod.GET)
+	public String saleOrderEditForm(Model model,@ModelAttribute("sale") Sale sale) {
 		
-		return "sale/sale_addOrUpdate";
+		
+		model.addAttribute("sale", sale);
+		model.addAttribute("barrelLists", barrelService.getAllBarrel());
+		model.addAttribute("saleOrder", new SaleOrder());
+		
+		return "home/home";
 	}
-	@RequestMapping(value={"/saleOrderEdit"}, method = RequestMethod.POST)
-	public String saleEdit(Model model, @ModelAttribute("sale") Sale sale, @ModelAttribute("saleOrder") SaleOrder saleOrder, @ModelAttribute("dateString") String date, BindingResult result) throws ParseException {
-		
-		if(result.hasErrors()) {
-			System.out.println("error post sales, Description: " + sale.getDescription() +
-					" id: "+ sale.getId() + " customer: "+ sale.getCustomer() + " date: "+ sale.getDate());
-		}else {
-			
-			SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-	        Date d1 = format1.parse( date );
-	        sale.setDate(d1);
-	        
-			saleService.saveOrUpdate(sale);
-			saleOrderService.saveOrUpdate(saleOrder);
-			model.addAttribute("saleList", saleService.getAllSale());
-		}
-		
-		return "sale/sale_list";
-	}
+	
+	
 	
 	
 	

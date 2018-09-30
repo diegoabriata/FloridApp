@@ -16,7 +16,7 @@
                                     <h3 class="panel-title">Ventas</h3>
                                     <ul class="panel-controls">
                                         <li>
-                                            <a th:href="@{/saleOrder/saleOrderEdit}"
+                                            <a th:href="@{/sale/saleEdit}"
                                                 class="btn btn-success fa fa-plus">
                                             </a>
                                         </li>        
@@ -55,7 +55,7 @@
                                                     <!-- <td th:text="${}"></td> -->
                                                     <td>
                                                             
-                                                        <a th:href="@{/saleOrder/saleOrderEdit/__${sale.id}__}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span>
+                                                        <a th:href="@{/sale/saleEdit/__${sale.id}__}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span>
                                                         </a>
                                                         
                                                         <a class="btn btn-danger btn-rounded btn-sm" data-toggle="modal" data-target="#modal-delete"

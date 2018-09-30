@@ -34,7 +34,7 @@ public class SaleController {
 		return "sale/sale_list";
 	}
 
-	/*@RequestMapping(value={"/saleEdit","/saleEdit/{id}"}, method = RequestMethod.GET)
+	@RequestMapping(value={"/saleEdit","/saleEdit/{id}"}, method = RequestMethod.GET)
 	public String saleEditForm(Model model, @PathVariable(required = false, name = "id") Long id) {
 		
 		if (null != id) {
@@ -66,7 +66,7 @@ public class SaleController {
 		}
 		
 		return "sale/sale_list";
-	}*/
+	}
 	@RequestMapping(value="/saleDelete/{id}", method = RequestMethod.GET)
 	public String saleDelete(Model model, @PathVariable(required = true, name = "id") Long id) {
 		
