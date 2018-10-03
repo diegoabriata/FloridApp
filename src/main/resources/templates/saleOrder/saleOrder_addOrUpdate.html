@@ -12,132 +12,117 @@ data-layout-decorate="~{home/home}">
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2 class="panel-title"><strong>Ventas</strong></h2>
+                        <h2 class="panel-title"><strong>Orden de Venta</strong></h2>
                         <ul class="panel-controls">
-                            <li><a type="button" th:href="@{/sale/}" class="btn btn-info btn-rounded">Ver Listado</a></li>
+                            <li><a type="button" th:href="@{/barrel/barrelEdit}" class="btn btn-info btn-rounded">Agregar Nuevos Barriles</a></li>
                         </ul>
                     </div>
-                    <form class="form-horizontal" th:action="@{/saleOrder/saleOrderEdit}"     method="POST">
-                       
-                       <input th:type="hidden" name="id" th:field="${sale.id}" />
-                       <div class="panel-body form-group-separated">
-                        <div class="form-group">
-                            <label class="col-md-3 col-xs-12 control-label">Cliente</label>
-                            <div class="col-md-6 col-xs-12">
-
-                                <select th:field="${sale.customer}" 
-                                class="form-control select" data-live-search="true">
-                                <option th:each="customer: ${saleCustomers}" th:value="${customer.id}" th:text="${customer.name + ' ' + customer.lastName + ', Empresa: ' + customer.company}"></option>
-                            </select>
-
-                        </div>
-                    </div>
-                    <div><input type="text" th:type="hidden" th:unless="${sale.date}" class="form-control" th:value="${#dates.format(#dates.createNow(), 'dd/MM/yyyy HH:mm')}" name="dateString"/></div>
-                    <div class="form-group" th:if="${sale.date}">
-                        <label class="col-md-3 col-xs-12 control-label">Fecha y Hora</label>
-                        <div class="col-md-6 col-xs-12">
-                            <input type="text" id="datetimepicker" class="form-control" th:value="${#dates.format(sale.date, 'dd/MM/yyyy HH:mm')}" name="dateString"></input>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Remito</label>
-                        <div class="col-md-6 col-xs-12">
-                            <input type="text" class="form-control" th:field="${sale.remito}"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 col-xs-12 control-label">Descripción</label>
-                        <div class="col-md-6 col-xs-12">
-                            <textarea type="text" class="form-control" th:field="${sale.description}"></textarea>
-                        </div>
-                    </div>
-                    
                     <div class="panel-heading">
-                        <h3 class="panel-title"><h3>Listado de Barriles</h3>
-                            <div class="well clearfix">
-                                <div id="czContainer">
-                                    <div id="first">
-                                        <div class="recordset">
-                                            <div class="fieldRow clearfix">
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <label>
-                                                            Barril<span class="asteriskField">*</span>
-                                                        </label><div class="controls ">
-                                                            <select th:field="${saleOrder.barrel}" 
-                                                            class="selectpicker form-control" data-live-search="true" id="id_stock_1_unit" name="stock_1_unit">
-                                                            <option th:each="barrel: ${barrelList}" selected="selected" th:value="${barrel.id}" th:text="${'Barril Nro:'+ barrel.id + ' - ' + barrel.liters + 'Lts'}"></option>
-                                                        </select>
-                                                        <script type="text/javascript">
-                                                    // it makes able the "data-live-search" after hitting the plus button
-                                                    $('.selectpicker').selectpicker('render');
-                                                    </script>
-                                                    </div>
-                                                </div>
-                                            </div><div class="col-md-3">
-                                                <div id="div_id_stock_1_unit" class="form-group">
-                                                    <label for="id_stock_1_unit" class="control-label  requiredField">
-                                                        Tipo de Cerveza<span class="asteriskField">*</span>
-                                                    </label><div class="controls "><select class="select form-control" id="id_stock_1_unit" name="stock_1_unit"><option value="" selected="selected">---------</option><option value="1">1/2liter</option></select></div>
-                                                </div>
-                                            </div><div class="col-md-3">
-                                                <div id="div_id_stock_1_quantity" class="form-group">
-                                                    <label for="id_stock_1_quantity" class="control-label  requiredField">
-                                                        Precio<span class="asteriskField">*</span>
-                                                    </label><div class="controls"><input class="numberinput form-control" id="id_stock_1_quantity" name="stock_1_quantity" step="0.01" type="text"/>
-                <script>
-                    /*jQuery Sum textbox*/
-                    // we used jQuery 'keyup' to trigger the computation as the user type
-                    $('.numberinput').keyup(function () {
- 
-                    // initialize the sum (total price) to zero
-                    var sum = 0;
-     
-                    // we use jQuery each() to loop through all the textbox with 'price' class
-                    // and compute the sum for each loop
-                    $('.numberinput').each(function() {
-                        sum += Number($(this).val());
-                    });
-     
-                    // set the computed value to 'totalPrice' textbox
-                    $('#totalPrice').val(sum);
-                    });
-                </script>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                       <form>
+                       <div class="form-group">
+                                    <!-- <input th:type="hidden" name="id" id="sale_id" th:field="${sale.id}" /> -->
+                                    <div class="form-group">
+                                        <label for="order_typeBeer">Tipo de Cerveza</label>
+                                        <input type="text" class="form-control" id="order_typeBeer"/>
                                     </div>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 col-xs-12 control-label">Total $</label>
-                            <div class="col-md-6 col-xs-12">
-                                <input type="text" class="form-control" id="totalPrice" th:field="${sale.total}" readonly/>
-                            </div>
-                           
-                        </div>
+                                    <div class="form-group">
+                                        <label for="customer_name_company">Cliente</label>
+                                        <select id="sale_customer_name_company"
+                                            class="form-control select" data-live-search="true">
+                                        <option  th:each="customer: ${customers}" th:value="${customer.id}" th:text="${customer.name + ' ' + customer.lastName + ', Empresa: ' + customer.company}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sale_remito">Remito</label>
+                                        <input type="text" class="form-control" id="sale_remito"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sale_date">Fecha y Hora</label>
+                                            <input type="text" id="datetimepicker" class="form-control" name="dateString"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sale_total">total va cero</label>
+                                        <input type="text" class="form-control" id="sale_total"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sale_description">Descripcion</label>
+                                        <input type="text" class="form-control" id="sale_description"/>
+                                    </div>
                     </div>
-                </div>
-
-
-                <!-- ADD/REMOVE BARRELS -->
-
-                <!-- END ADD/REMOVE BARRELS -->   
-                <div class="panel-footer">    
-                    <button class="btn btn-primary pull-right" type="submit">Guardar</button>
+                    <div class="panel-heading">
+                        <h2 class="panel-title"><strong>Barriles</strong></h2>
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
+                                <table class="table table-bordered table-hover" id="tab_logic">
+                                    <thead>
+                                        <tr >
+                                            <th class="text-center">
+                                                #
+                                            </th>
+                                            <th class="text-center">
+                                                Barril
+                                            </th>
+                                            <th class="text-center">
+                                                Mail
+                                            </th>
+                                            <th class="text-center">
+                                                Mobile
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id='addr0'>
+                                            <td>
+                                            1
+                                            </td>
+                                            <td>
+                                            <input type="text" name='name0'  placeholder='Name' class="form-control"/>
+                                            <select id="barrel_id"
+                                                class="form-control select" name="barrel_id" data-live-search="true">
+                                            <option  th:each="barrel: ${barrels}" th:value="${barrel.id}" th:text="${'Barril Nro:' +barrel.id+', Capacidad: ' + barrel.litersCapacity}"></option>
+                                            </select>
+                                            </td>
+                                            <td>
+                                            <input type="text" name='mail0' placeholder='Mail' class="form-control"/>
+                                            </td>
+                                            <td>
+                                            <input type="text" name='mobile0' placeholder='Mobile' class="form-control"/>
+                                            </td>
+                                        </tr>
+                                        <tr id='addr1'></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
+                    </div>
+                    </form>  
                 </div>
             </div>
-            
-                            </form>  
-                        </div>
-                    </div>
-                    <!-- END RESPONSIVE TABLES -->
-                </div> 
-
-                <!-- END PAGE CONTENT WRAPPER -->
-                <!-- END PAGE CONTAINER -->  
-            </body>
+        </div>
+</body>
 </html>
+<script type="text/javascript">
+         $(document).ready(function(){
+      var i=1;
+     $("#add_row").click(function(){
+      $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='name"+i+"' type='text' placeholder='Name' class='form-control input-md'  /></td><td><input  name='mail"+i+"' type='text' placeholder='Mail'  class='form-control input-md'></td><td><input  name='mobile"+i+"' type='text' placeholder='Mobile'  class='form-control input-md'></td>"
+        );
+
+
+
+
+
+
+      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+      i++; 
+  });
+     $("#delete_row").click(function(){
+         if(i>1){
+         $("#addr"+(i-1)).html('');
+         i--;
+         }
+     });
+
+});
+</script>

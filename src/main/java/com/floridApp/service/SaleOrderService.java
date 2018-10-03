@@ -1,12 +1,12 @@
 package com.floridApp.service;
 
-import java.util.Set;
+import java.util.List;
 
 import com.floridApp.model.SaleOrder;
 
 public interface SaleOrderService {
 	
-	public Set<SaleOrder> getAllSaleOrder();
+	public List<SaleOrder> getAllSaleOrder();
 	public SaleOrder getSaleOrderById(Long id);
 	public void saveOrUpdate(SaleOrder saleOrder);
 	public void deleteSaleOrder(Long id);

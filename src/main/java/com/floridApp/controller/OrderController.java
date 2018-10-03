@@ -2,11 +2,7 @@ package com.floridApp.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.floridApp.model.Barrel;
+
 import com.floridApp.model.Customer;
 import com.floridApp.model.Sale;
-import com.floridApp.model.SaleOrder;
+
 import com.floridApp.service.BarrelService;
 import com.floridApp.service.CustomerService;
 import com.floridApp.service.SaleOrderService;
@@ -41,48 +37,51 @@ public class OrderController {
 	@Autowired 
 	private SaleOrderService saleOrderService;
 	
-	private final static String ORDERS = "saleOrder/orders";
+	private final static String ORDER = "saleOrder/saleOrder_addOrUpdate";
 	private final static String SALE_LIST = "sale/sale_list";
 	
 	
-	//@manyToMany relationship  extra fields 
-	@RequestMapping(value = "/orders", method = RequestMethod.GET)
+	//@manyToMany relationship with extra fields 
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String barrelList(Model model){
 		
 		model.addAttribute("customers", customerService.getAllCustomer());
         model.addAttribute("barrels", barrelService.getAllBarrel());
         model.addAttribute("sales", saleService.getAllSale());
         model.addAttribute("orders", saleOrderService.getAllSaleOrder());
-        return ORDERS;
+        return ORDER;
     }
 	@RequestMapping(value= {"/createOrder"}, method = RequestMethod.POST)
     @ResponseBody //https://stackoverflow.com/questions/28646332/how-does-the-spring-responsebody-annotation-work-in-this-restful-application-ex
     public String saveOrder(@RequestParam String remito, @RequestParam String date, 
     		@RequestParam Double total, @RequestParam String description, 
     		@RequestParam Customer customer,@RequestParam(value="barrelIds[]") Long[] barrelIds,
-    		@RequestParam String typeBeer, @RequestParam Double beerPrice, @RequestParam Double barrelLiters) throws ParseException{
-		
+    		@RequestParam(value="typesBeers[]") String[] typesBeers, @RequestParam (value="beerPrices[]") Double[] beerPrices, 
+    		@RequestParam (value="barrelsLiters[]")Double barrelsLiters, 
+    		@RequestParam (value="barrelStatus[]") boolean barrelStatus) throws ParseException{
 		
 		//1.Instantiate a new Sale object and save it
 		Sale sale = new Sale();
 		sale.setRemito(remito);
 		sale.setDescription(description);
-		sale.setTotal(total);
 		SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Date d1 = format1.parse(date);
         sale.setDate(d1);
         sale.setCustomer(customer);
+        sale.setTotal(total);
         saleService.saveOrUpdate(sale);
-        
-		SaleOrder saleOrder = new SaleOrder();
-		saleOrder.setTypeBeer(typeBeer);
-		saleOrder.setBeerPrice(beerPrice);
-		saleOrder.setBarrelLiters(barrelLiters);
-		
-        for(Long barrelId: barrelIds) {
+      		
+        /*for(Long barrelId: barrelIds) {
+        	
+        	SaleOrder saleOrder = new SaleOrder();
         	saleOrder.setBarrel(barrelService.getBarrelById(barrelId));
         	saleOrder.setSale(sale);
-		}
+        	saleOrder.setBarrelStatus(barrelStatus);
+        	saleOrder.setTypeBeer(typeBeer);
+    		saleOrder.setBeerPrice(beerPrice);
+    		saleOrder.setBarrelLiters(barrelLiters);
+        
+		}*/
         
 		return SALE_LIST;
 	}

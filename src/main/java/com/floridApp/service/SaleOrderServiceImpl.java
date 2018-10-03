@@ -1,6 +1,7 @@
 package com.floridApp.service;
 
-import java.util.Set;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,9 +17,9 @@ public class SaleOrderServiceImpl implements SaleOrderService {
 	SaleOrderRepository saleOrderRepository;
 	
 	@Override
-	public Set<SaleOrder> getAllSaleOrder() {
+	public List<SaleOrder> getAllSaleOrder() {
 		
-		return (Set<SaleOrder>) saleOrderRepository.findAll();
+		return (List<SaleOrder>) saleOrderRepository.findAll();
 	}
 
 	@Override
