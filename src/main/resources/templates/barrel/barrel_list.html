@@ -29,7 +29,8 @@
                                             <thead>
                                                 <tr>
                                                     <th width="50">id</th>
-                                                    <th width="100">Litros</th>
+                                                    <th width="100">Capacidad</th>
+                                                    <!-- <th width="100">Devuelto</th> -->
                                                     <th width="100">acciones</th>
                                                 </tr>
                                             </thead>
@@ -37,17 +38,19 @@
                                                 <tr th:each="barrel : ${barrelList}">
                                                     <td class="text-center" th:text="${barrel.id}">
                                                     </td>
-                                                    <td th:text="${barrel.liters}">
+                                                    <td th:text="${barrel.litersCapacity + 'lts'}">
                                                     </td>
+                                                    <!-- <td class="col_name">
+                                                        <span style="color:green; text-align: center;" th:if="${barrel.status}">Si</span>
+                                                        <span style="color:red; text-align: center;" th:if="${!barrel.status}">No</span>
+                                                    </td> -->
                                                     <td>
                                                         <a th:href="@{/barrel/barrelEdit/__${barrel.id}__}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span>
                                                         </a>
-                                                        
                                                         <a class="btn btn-danger btn-rounded btn-sm" data-toggle="modal" data-target="#modal-delete"
 				                                           th:attr="data-target='#modal-delete'+${barrel.id}">
 				                                            <span class="fa fa-times"></span>
 				                                        </a>
-                                                        
 											         </td>
                                                          <!--start permanently delete modal-->
                                     <div class="modal modal-delete" th:id="modal-delete+${barrel.id}">

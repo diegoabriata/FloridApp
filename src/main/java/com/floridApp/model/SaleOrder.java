@@ -1,5 +1,6 @@
 package com.floridApp.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,20 +11,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name="sale_order")
+@Table(name="sales_orders")
 public class SaleOrder {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false, updatable = false)
 	private Long id;
-	
-	@Column(name = "type_beer")
-	private String typeBeer;
-	
-	@Column(name="beer_price")
-	private Double beerPrice;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "sale_id")
@@ -32,6 +28,19 @@ public class SaleOrder {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "barrel_id")
 	private Barrel barrel;
+	
+	//Additional fields source: https://www.codejava.net/frameworks/hibernate/hibernate-many-to-many-association-with-extra-columns-in-join-table-example
+	@Column(name = "type_beer")
+	private String typeBeer;
+	
+	@Column(name="beer_price")
+	private Double beerPrice;
+	
+	@Column(name="barrel_liters")
+	private Double barrelLiters;
+	
+	@Column(name = "barrel_status")
+	private boolean barrelStatus; // boolean save you a lot more memory than the Object Boolean
 
 	public Long getId() {
 		return id;
@@ -39,22 +48,6 @@ public class SaleOrder {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getTypeBeer() {
-		return typeBeer;
-	}
-
-	public void setTypeBeer(String typeBeer) {
-		this.typeBeer = typeBeer;
-	}
-	
-	public Double getBeerPrice() {
-		return beerPrice;
-	}
-
-	public void setBeerPrice(Double beerPrice) {
-		this.beerPrice = beerPrice;
 	}
 
 	public Sale getSale() {
@@ -73,9 +66,35 @@ public class SaleOrder {
 		this.barrel = barrel;
 	}
 
-	@Override
-	public String toString() {
-		return "SaleOrder [id=" + id + ", typeBeer=" + typeBeer + ", beerPrice=" + beerPrice + ", sale=" + sale
-				+ ", barrel=" + barrel + "]";
+	public String getTypeBeer() {
+		return typeBeer;
+	}
+
+	public void setTypeBeer(String typeBeer) {
+		this.typeBeer = typeBeer;
+	}
+
+	public Double getBeerPrice() {
+		return beerPrice;
+	}
+
+	public void setBeerPrice(Double beerPrice) {
+		this.beerPrice = beerPrice;
+	}
+
+	public Double getBarrelLiters() {
+		return barrelLiters;
+	}
+
+	public void setBarrelLiters(Double barrelLiters) {
+		this.barrelLiters = barrelLiters;
+	}
+
+	public boolean isBarrelStatus() {
+		return barrelStatus;
+	}
+
+	public void setBarrelStatus(boolean barrelStatus) {
+		this.barrelStatus = barrelStatus;
 	}
 }

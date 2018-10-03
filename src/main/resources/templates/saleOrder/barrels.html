@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Products</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+     <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .navigation-order{
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-lg-offset-3">
+            <a href="/barrels"d></a>
+        </div>
+    </div>
+    <div class="page-header" id="banner">
+        <div class="row">
+            <div class="col-lg-8 col-md-7 col-sm-6">
+                <h1>Barrels</h1>
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Nro Barril</th>
+                        <th>Liters</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="barrel : ${barrels}">
+                        <td th:text="${barrel.id}"></td>
+                        <td th:text="${barrel.liters}"></td>
+                        <td th:text="${barrel.barrelPrice}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-7 col-sm-6">
+                <form>
+                  <div class="form-group">
+                        <label for="barrel_id">Nro:</label>
+                        <input type="text" class="form-control" id="barrel_id"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="barrel_liters">Litros:</label>
+                        <input type="text" class="form-control" id="barrel_liters"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="barrel_price">Price:</label>
+                        <input type="text" class="form-control" id="barrel_price"/>
+                    </div>
+                    <button type="submit" class="btn btn-default" id="btn_submit">Agregar Nuevo Barril</button>
+                </form>
+            </div>
+        </div>
+        <br />
+        <div class="row navigation-order">
+            <div class="col-lg-8 col-md-7 col-sm-6">
+                <a href="/orders">Click here to go to Customer Order Management</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery.js" type="application/javascript"></script>
+<script type="application/javascript">
+    $(document).ready(function () {
+       $('#btn_submit').on("click",function (e) {
+
+           e.preventDefault();
+           var barrelId,barrelLiters,barrelPrice;
+           barrelId = $('#barrel_id').val(); 
+           barrelLiters = $('#barrel_liters').val();
+           barrelPrice = $('#barrel_price').val();
+
+           if (($.trim(barrelLiters)=="") || (!$.trim($.isNumeric(barrelLiters)))) {
+              alert("El campo litros no puede estar vacio y debe ser un valor numerico");
+           }
+           else if (($.trim(barrelPrice)=="") || (!$.trim($.isNumeric(barrelPrice)))) {
+              alert("El campo Precio no puede estar vacio y debe ser un valor numerico");
+           } else if (($.trim(barrelId)=="") || (!$.trim($.isNumeric(barrelId)))) {
+              alert("El campo Numero no puede estar vacio y debe ser un valor numerico");
+           } 
+           else{
+              var data = {};
+              data["id"] = barrelId;
+              data["liters"] = barrelLiters;
+              data["barrelPrice"] = barrelPrice;
+              $.ajax({
+                type:"POST",
+                contentType:"application/json",
+                url:"/savebarrel",
+                data: JSON.stringify(data),
+                dataType: 'json',
+                timeout: 6000,
+                success: function (data) {
+                  if (confirm("Barril nro: "+data+ " guardado")) {
+                      window.location.reload();
+                  }
+                }
+              });
+            }  
+        });
+    });
+</script>
+</body>
+</html>

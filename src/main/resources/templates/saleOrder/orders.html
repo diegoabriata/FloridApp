@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Management</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-lg-offset-3">
+            <a href="/barrels"></a>
+        </div>
+    </div>
+    <div class="page-header" id="banner">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-7 col-sm-6">
+                                <h1>Agregar Orden de Venta</h1>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="barrel_id">Seleccione los barriles</label>
+                                            <div class="checkbox" name="barrel" th:each="barrel : ${barrels}">
+                                                <label><span th:text="${barrel.id}"></span><input style="margin-left: 0px;" type="checkbox" th:field="*{barrels}" th:value="${barrel.id}" /></label>
+                                            </div>
+                                    </div>
+                                    <!-- <input th:type="hidden" name="id" id="sale_id" th:field="${sale.id}" /> -->
+                                    <div class="form-group">
+                                        <label for="order_typeBeer">Tipo de Cerveza</label>
+                                        <input type="text" class="form-control" id="order_typeBeer"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="customer_name_company">Cliente</label>
+                                        <select id="sale_customer_name_company"
+                                            class="form-control select" data-live-search="true">
+                                        <option  th:each="customer: ${customerOrders}" th:value="${customer.id}" th:text="${customer.name + ' ' + customer.lastName + ', Empresa: ' + customer.company}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sale_remito">Remito</label>
+                                        <input type="text" class="form-control" id="sale_remito"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sale_date">Fecha</label>
+                                        <input type="text" id="datetimepicker" class="form-control" name="dateString"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sale_total">total va cero</label>
+                                        <input type="text" class="form-control" id="sale_total"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sale_description">Descripcion</label>
+                                        <input type="text" class="form-control" id="sale_description"/>
+                                    </div>
+                                    <button type="submit" class="btn btn-default" id="btn_submit">Agregar nueva Orden de Venta</button>
+                                </form>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-8 col-md-7 col-sm-6">
+                                <a href="/barrel/">ir a la pagina de barriles</a>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-8 col-md-7 col-sm-6">
+                                <h1>Listado de Ordenes</h1>
+
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Nro de Orden</th>
+                                        <th>Cliente</th>
+                                        <th>Remito</th>
+                                        <th>Fecha y Hora</th>
+                                        <th>Totaldelete</th>
+                                        <th>Descripcion</th>
+                                        <th>Barriles</th>
+                                        <th>Total</th>
+                                        <th>Accion</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="order : ${orders}">
+                                        <td th:text="${order.orderId}"></td>
+                                        <!-- https://stackoverflow.com/questions/47780414/displaying-inner-objects-in-thymeleaf -->
+                                        <td th:text="${order.sale.remito}"> </td>
+                                        <td th:text="${order.sale.customer.lastName + ' Empresa:' + order.sale.customer.company}"></td>
+                                        <td th:text="${order.sale.date}"> </td>
+                                        <td th:text="${order.sale.total}"> </td>
+                                        <td th:text="${order.sale.description}"></td>
+                                        <td>
+                                            <table>
+                                                <tr th:each="barrel :${order.barrels}">
+                                                    <td th:text="${barrel.id+' '}"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td th:text="${order.total}"></td>
+                                        <td th:id="${order.orderId}"><button class="btn btn-danger delete-order">Complete Order</button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+</div>
+<script src="/js/jquery.js" type="application/javascript"></script>
+</body>
+</html>
+<script type="application/javascript">
+    $(document).ready(function () {
+
+        $('#btn_submit').on("click",function(e){
+            e.preventDefault();
+            var customer = $("#sale_customer_name_company").val();
+            var remito = $("#sale_remito").val();
+            var date = $("#datetimepicker").val();
+            var total = parseFloat($("#sale_total").val());
+            var description = $("#sale_description").val();
+
+            var typeBeer = $("#order_typeBeer").val();
+
+            var barrelIds = [];
+
+            $(".checkbox :checkbox:checked").each(function () {
+                barrelIds.push(parseInt($(this).attr("value")) 
+                //add each one of the barrels checked
+                    );
+            });
+            
+            
+            $.ajax({
+                type:"POST",
+                url:"/createorder",
+                data:{customer:customer,remito:remito,date:date,total:total,description:description,typeBeer:typeBeer,barrelIds:barrelIds},
+                success:function (data) {
+                    console.log(barrelIds, customer, date, total, description, typeBeer);
+                    if (confirm("Orden de Venta nro:"+data+" guardada")) {
+                        window.location.reload();
+                        
+                    }
+                    
+                }
+            }); 
+        });
+
+        //Complete order button handler
+
+        /*$('.delete-order').on("click", function(e){
+            e.preventDefault();
+
+            if(confirm("Are you sure the order is complete?")){
+                var Id = parseInt($(this).closest("td").attr("id"));
+
+                $.ajax({
+                    type:"POST",
+                    url:"/removeorder",
+                    data:{Id:Id},
+                    success:function (data) {
+                        $(".delete-order").closest("td#"+data).parent("tr").fadeOut("slow",function(){
+                            $(".delete-order").closest("td#"+data).parent("tr").remove();
+                        });
+                    }
+                });
+            }
+
+        });*/
+    });
+</script>

@@ -33,15 +33,8 @@ public class Sale {
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
-	/*@ManyToMany
-	@JoinTable(name="sale_barrel",
-	joinColumns=@JoinColumn(name="sale_id"),
-	inverseJoinColumns=@JoinColumn(name="barrel_id")
-			)
-	private Set<Barrel> barrels;*/
-	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="sale")
-	private Set<SaleOrder> saleOrderList;
+	private Set<SaleOrder> salesOrders;
 	
 	public Long getId() {
 		return id;
@@ -91,14 +84,12 @@ public class Sale {
 		this.customer = customer;
 	}
 
-	public Set<SaleOrder> getSaleOrderList() {
-		return saleOrderList;
+	public Set<SaleOrder> getSalesOrders() {
+		return salesOrders;
 	}
 
-	public void setSaleOrderList(Set<SaleOrder> saleOrderList) {
-		this.saleOrderList = saleOrderList;
+	public void setSalesOrders(Set<SaleOrder> salesOrders) {
+		this.salesOrders = salesOrders;
 	}
-
-	
 	
 }
