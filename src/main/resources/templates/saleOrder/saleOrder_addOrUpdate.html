@@ -18,18 +18,12 @@ data-layout-decorate="~{home/home}">
                         </ul>
                     </div>
                     <div class="panel-heading">
-                       <form>
-                       <div class="form-group">
-                                    <!-- <input th:type="hidden" name="id" id="sale_id" th:field="${sale.id}" /> -->
-                                    <div class="form-group">
-                                        <label for="order_typeBeer">Tipo de Cerveza</label>
-                                        <input type="text" class="form-control" id="order_typeBeer"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="customer_name_company">Cliente</label>
-                                        <select id="sale_customer_name_company"
+<!-- <input th:type="hidden" name="id" id="sale_id" th:field="${sale.id}" /> -->
+                     <div class="form-group">
+                        <label for="customer_name_company">Cliente</label>
+                            <select id="sale_customer_name_company"
                                             class="form-control select" data-live-search="true">
-                                        <option  th:each="customer: ${customers}" th:value="${customer.id}" th:text="${customer.name + ' ' + customer.lastName + ', Empresa: ' + customer.company}"></option>
+                            <option  th:each="customer: ${customers}" th:value="${customer.id}" th:text="${customer.name + ' ' + customer.lastName + ', Empresa: ' + customer.company}"></option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -41,88 +35,159 @@ data-layout-decorate="~{home/home}">
                                             <input type="text" id="datetimepicker" class="form-control" name="dateString"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="sale_total">total va cero</label>
-                                        <input type="text" class="form-control" id="sale_total"/>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="sale_description">Descripcion</label>
                                         <input type="text" class="form-control" id="sale_description"/>
                                     </div>
                     </div>
+                                    
                     <div class="panel-heading">
                         <h2 class="panel-title"><strong>Barriles</strong></h2>
-                        <div class="row clearfix">
-                            <div class="col-md-12 column">
-                                <table class="table table-bordered table-hover" id="tab_logic">
-                                    <thead>
-                                        <tr >
-                                            <th class="text-center">
-                                                #
-                                            </th>
-                                            <th class="text-center">
-                                                Barril
-                                            </th>
-                                            <th class="text-center">
-                                                Mail
-                                            </th>
-                                            <th class="text-center">
-                                                Mobile
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr id='addr0'>
-                                            <td>
-                                            1
-                                            </td>
-                                            <td>
-                                            <input type="text" name='name0'  placeholder='Name' class="form-control"/>
-                                            <select id="barrel_id"
-                                                class="form-control select" name="barrel_id" data-live-search="true">
-                                            <option  th:each="barrel: ${barrels}" th:value="${barrel.id}" th:text="${'Barril Nro:' +barrel.id+', Capacidad: ' + barrel.litersCapacity}"></option>
-                                            </select>
-                                            </td>
-                                            <td>
-                                            <input type="text" name='mail0' placeholder='Mail' class="form-control"/>
-                                            </td>
-                                            <td>
-                                            <input type="text" name='mobile0' placeholder='Mobile' class="form-control"/>
-                                            </td>
-                                        </tr>
-                                        <tr id='addr1'></tr>
-                                    </tbody>
-                                </table>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <legend></legend>
+                            </div>
+                            <!-- panel preview -->
+                            <div class="col-sm-5">
+                                <div class="panel panel-default">
+                                    <div class="panel-body form-horizontal payment-form">
+                                        <div class="form-group">
+                                            <label for="barrel" class="col-sm-3 control-label">Barril</label>
+                                            <div class="col-sm-9">
+                                                <select name="concept" id="barrel" class="form-control select" data-live-search="true">
+                                        <option  th:each="barrel: ${barrels}" th:value="${barrel.id}" th:text="${'Barril Nro:' +barrel.id+', Capacidad: ' + barrel.litersCapacity}"></option>
+                                        </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="barrelsLiters" class="col-sm-3 control-label">Litros</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" id="barrelsLiters" name="barrelsLiters">
+                                            </div>
+                                        </div> 
+                                        <div class="form-group">
+                                            <label for="amount" class="col-sm-3 control-label">Tipo de Cerveza</label>
+                                            <div class="col-sm-9">
+                                                <select id="typeBeer" name="typeBeer" class="form-control select" data-live-search="true">
+                                                    <option>IPA</option>
+                                                    <option>Blonde</option>
+                                                    <option>Black</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="beerPrice" class="col-sm-3 control-label">Precio</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" id="beerPrice" name="beerPrice">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="status" class="col-sm-3 control-label">Estado del Barril</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" id="barrelStatus" name="barrelStatus">
+                                                    <option selected>Entregado</option>
+                                                    <option>Devuelto</option>
+                                                </select>
+                                            </div>
+                                        </div> 
+                                        <div class="form-group">
+                                            <div class="col-sm-12 text-right">
+                                                <button type="button" class="btn btn-default preview-add-button">
+                                                    <span class="glyphicon glyphicon-plus"></span> Add
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>            
+                            </div> <!-- / panel preview -->
+                            <div class="col-sm-7">
+                                <h4>Preview:</h4>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="table-responsive">
+                                            <table class="table preview-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Barril Nro</th>
+                                                        <th>Litros</th>
+                                                        <th>Tipo de cerveza</th>
+                                                        <th>Precio</th>
+                                                        <th>Estado Del Barril</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody> <!-- preview content goes here-->
+                                            </table>
+                                        </div>                            
+                                    </div>
+                                </div>
+                                <div class="row text-right">
+                                    <div class="col-xs-12">
+                                        <h4>Total: <strong><span class="preview-total"></span></strong></h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <hr style="border:1px dashed #dddddd;">
+                                        <button type="button" id="btn_submit" class="btn btn-primary btn-block">Cargar Pedido</button>
+                                    </div>                
+                                </div>
                             </div>
                         </div>
-                        <a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
                     </div>
-                    </form>  
+                      
                 </div>
             </div>
         </div>
 </body>
 </html>
 <script type="text/javascript">
-         $(document).ready(function(){
-      var i=1;
-     $("#add_row").click(function(){
-      $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='name"+i+"' type='text' placeholder='Name' class='form-control input-md'  /></td><td><input  name='mail"+i+"' type='text' placeholder='Mail'  class='form-control input-md'></td><td><input  name='mobile"+i+"' type='text' placeholder='Mobile'  class='form-control input-md'></td>"
-        );
-
-
-
-
-
-
-      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
-      i++; 
-  });
-     $("#delete_row").click(function(){
-         if(i>1){
-         $("#addr"+(i-1)).html('');
-         i--;
-         }
-     });
-
+    function calc_total(){
+    var sum = 0;
+    $('.input-beerPrice').each(function(){
+        sum += parseFloat($(this).text());
+    });  
+    var total = parseFloat($('.preview-total').html(sum));
+    console.log(total); 
+}
+$(document).on('click', '.input-remove-row', function(){ 
+    var tr = $(this).closest('tr');
+    tr.fadeOut(200, function(){
+        tr.remove();
+        calc_total()
+    });
 });
+
+$(function(){
+    $('.preview-add-button').click(function(){
+        var form_data = {};
+        form_data["barrel"] = $( "#barrel").val();
+        form_data["liters"] = $('.payment-form input[name="barrelsLiters"]').val();
+        form_data["typeBeer"] = $('.payment-form #typeBeer option:selected').text();
+        form_data["beerPrice"] = parseFloat($('.payment-form input[name="beerPrice"]').val()).toFixed(2);
+        form_data["barrelStatus"] = $('.payment-form #barrelStatus option:selected').text();
+        form_data["remove-row"] = '<span class="glyphicon glyphicon-remove"></span>';
+        var row = $('<tr></tr>');
+        
+        $.each(form_data, function( type, value ) {
+            $('<td class="input-'+type+'"></td>').html(value).appendTo(row);
+            console.log(form_data["beerPrice"]);
+
+        });
+        $('.preview-table > tbody:last').append(row); 
+        calc_total();
+    });  
+});
+
+
+
+
+
+ $(document).ready(function () {
+       $('#btn_submit').on("click",function (e) {
+
+           e.preventDefault();
+           
+           
+        });
+    });
+
 </script>
