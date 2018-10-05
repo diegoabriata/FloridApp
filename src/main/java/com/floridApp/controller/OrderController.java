@@ -70,8 +70,11 @@ public class OrderController {
         sale.setCustomer(customer);
         sale.setTotal(total);
         saleService.saveOrUpdate(sale);
+        
+        Double[] barrelArray;
+        
       		
-        /*for(Long barrelId: barrelIds) {
+       /* for(Long barrelId: barrelIds) {
         	
         	SaleOrder saleOrder = new SaleOrder();
         	saleOrder.setBarrel(barrelService.getBarrelById(barrelId));
