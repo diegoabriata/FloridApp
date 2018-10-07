@@ -19,11 +19,11 @@ data-layout-decorate="~{home/home}">
                     </div>
                     <div class="panel-heading">
 <!-- <input th:type="hidden" name="id" id="sale_id" th:field="${sale.id}" /> -->
-                     <div class="form-group">
-                        <label for="customer_name_company">Cliente</label>
-                            <select id="sale_customer_name_company"
-                                            class="form-control select" data-live-search="true">
-                            <option  th:each="customer: ${customers}" th:value="${customer.id}" th:text="${customer.name + ' ' + customer.lastName + ', Empresa: ' + customer.company}"></option>
+                                 <div class="form-group">
+                                    <label for="customer_name_company">Cliente</label>
+                                        <select id="sale_customer_name_company"
+                                                        class="form-control select" data-live-search="true">
+                                        <option  th:each="customer: ${customers}" th:value="${customer.id}" th:text="${customer.name + ' ' + customer.lastName + ', Empresa: ' + customer.company}"></option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -38,8 +38,7 @@ data-layout-decorate="~{home/home}">
                                         <label for="sale_description">Descripcion</label>
                                         <input type="text" class="form-control" id="sale_description"/>
                                     </div>
-                    </div>
-                                    
+                    </div>            
                     <div class="panel-heading">
                         <h2 class="panel-title"><strong>Barriles</strong></h2>
                         <div class="row">
@@ -100,7 +99,7 @@ data-layout-decorate="~{home/home}">
                                 </div>            
                             </div> <!-- / panel preview -->
                             <div class="col-sm-7">
-                                <h4>Preview:</h4>
+                                <h4>Resumen:</h4>
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="table-responsive">
@@ -121,7 +120,7 @@ data-layout-decorate="~{home/home}">
                                 </div>
                                 <div class="row text-right">
                                     <div class="col-xs-12">
-                                        <h4>Total: <strong><span class="preview-total"></span></strong></h4>
+                                        <h4>Total: <strong><span id="sale_total" class="preview-total"></span></strong></h4>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -140,54 +139,96 @@ data-layout-decorate="~{home/home}">
 </body>
 </html>
 <script type="text/javascript">
+
+
+    var barrelsData = [];
+    //var total = 0;
+    
     function calc_total(){
-    var sum = 0;
-    $('.input-beerPrice').each(function(){
-        sum += parseFloat($(this).text());
-    });  
-    var total = parseFloat($('.preview-total').html(sum));
-    console.log(total); 
-}
-$(document).on('click', '.input-remove-row', function(){ 
-    var tr = $(this).closest('tr');
-    tr.fadeOut(200, function(){
-        tr.remove();
-        calc_total()
-    });
-});
 
-$(function(){
-    $('.preview-add-button').click(function(){
-        var form_data = {};
-        form_data["barrel"] = $( "#barrel").val();
-        form_data["liters"] = $('.payment-form input[name="barrelsLiters"]').val();
-        form_data["typeBeer"] = $('.payment-form #typeBeer option:selected').text();
-        form_data["beerPrice"] = parseFloat($('.payment-form input[name="beerPrice"]').val()).toFixed(2);
-        form_data["barrelStatus"] = $('.payment-form #barrelStatus option:selected').text();
-        form_data["remove-row"] = '<span class="glyphicon glyphicon-remove"></span>';
-        var row = $('<tr></tr>');
+        var sum = 0;
         
-        $.each(form_data, function( type, value ) {
-            $('<td class="input-'+type+'"></td>').html(value).appendTo(row);
-            console.log(form_data["beerPrice"]);
+        $('.input-beerPrice').each(function(){
+            sum += parseFloat($(this).text()); 
+        });  
+        parseFloat($('.preview-total').html(sum)); 
+        
+    }
 
+    $(document).on('click', '.input-remove-row', function(){ 
+        var tr = $(this).closest('tr');
+        tr.fadeOut(200, function(){
+            tr.remove();
+            calc_total()
         });
-        $('.preview-table > tbody:last').append(row); 
-        calc_total();
-    });  
-});
+    });
+
+    $(function(){
+
+        $('.preview-add-button').click(function(){
+            var form_data = {};
+            form_data["barrel"] = parseInt($( "#barrel").val());
+            form_data["liters"] = parseFloat($('.payment-form input[name="barrelsLiters"]').val());
+            form_data["typeBeer"] = $('.payment-form #typeBeer option:selected').text();
+            form_data["beerPrice"] = parseFloat($('.payment-form input[name="beerPrice"]').val());
+            form_data["barrelStatus"] = $('.payment-form #barrelStatus option:selected').text();
+            form_data["remove-row"] = '<span class="glyphicon glyphicon-remove"></span>';
+            var row = $('<tr></tr>');
+            var data = {};
+
+            $.each(form_data, function( type, value ) {
+                $('<td class="input-'+type+'"></td>').html(value).appendTo(row);
+                if (type!="remove-row") {
+
+                    data['"'+type + '"']= value;            
+                }
+            });
+            barrelsData.push(data); 
+            
+            $('.preview-table > tbody:last').append(row); 
+            calc_total();
+        });  
+    });
 
 
 
 
 
- $(document).ready(function () {
        $('#btn_submit').on("click",function (e) {
 
            e.preventDefault();
-           
+
+           //1rst. Sale Object sale{}= customer, remito, date, description, total
+           //2nd. Order Object order{}= barrelId, barrelLiters, typeBeer, barrelStatus, beerPrice 
+
+           var customer = parseInt($("#sale_customer_name_company").val());
+           var remito = $("#sale_remito").val();
+           var date = $("#datetimepicker").val();
+           var description = $("#sale_description").val();
+           var total = parseFloat($('#sale_total').html()); 
+
+           console.log(remito);
+
+           var data = {customer:customer,remito:remito,date:date,total:total,description:description,barrelsData:barrelsData};
+
+           console.log(data);
+           //https://stackoverflow.com/questions/21834180/passing-in-json-array-to-spring-mvc-controller
+
+         /*  $.ajax({
+                type:"POST",
+                url:"/createorder",
+                data:{customer:customer,remito:remito,date:date,total:total,description:description,typeBeer:typeBeer,barrelIds:barrelIds},
+                success:function (data) {
+                    console.log(barrelIds, customer, date, total, description, typeBeer);
+                    if (confirm("Orden de Venta nro:"+data+" guardada")) {
+                        window.location.reload();
+                        
+                    }
+                    
+                }
+            }); */
            
         });
-    });
 
 </script>
+remitoremitoremitoremito
