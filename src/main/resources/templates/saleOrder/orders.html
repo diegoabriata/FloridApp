@@ -132,7 +132,7 @@
             
             $.ajax({
                 type:"POST",
-                url:"/createorder",
+                url:"/createOrder",
                 data:{customer:customer,remito:remito,date:date,total:total,description:description,typeBeer:typeBeer,barrelIds:barrelIds},
                 success:function (data) {
                     console.log(barrelIds, customer, date, total, description, typeBeer);

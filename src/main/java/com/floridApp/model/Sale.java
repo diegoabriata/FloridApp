@@ -1,7 +1,9 @@
 package com.floridApp.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +36,7 @@ public class Sale {
 	private Customer customer;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="sale")
-	private Set<SaleOrder> salesOrders;
+	private List<SaleOrder> salesOrders;
 	
 	public Long getId() {
 		return id;
@@ -84,12 +86,14 @@ public class Sale {
 		this.customer = customer;
 	}
 
-	public Set<SaleOrder> getSalesOrders() {
+	public List<SaleOrder> getSalesOrders() {
 		return salesOrders;
 	}
 
-	public void setSalesOrders(Set<SaleOrder> salesOrders) {
+	public void setSalesOrders(List<SaleOrder> salesOrders) {
 		this.salesOrders = salesOrders;
 	}
+	
+	
 	
 }

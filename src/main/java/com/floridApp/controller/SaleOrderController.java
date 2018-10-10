@@ -36,14 +36,16 @@ public class SaleOrderController {
 	SaleOrderService saleOrderService; 
 
 	@RequestMapping(value={"/saleOrderEdit"}, method = RequestMethod.GET)
-	public String saleOrderEditForm(Model model,@ModelAttribute("sale") Sale sale) {
+	public String saleOrderEditForm(
+			Model model, 
+			@ModelAttribute("sale") final Sale sale, 
+			BindingResult mapping1BindingResult) {
 		
+        model.addAttribute("barrels", barrelService.getAllBarrel());
+        model.addAttribute("sales",sale);
+        model.addAttribute("orders", saleOrderService.getAllSaleOrder());
 		
-		model.addAttribute("sale", sale);
-		model.addAttribute("barrelLists", barrelService.getAllBarrel());
-		model.addAttribute("saleOrder", new SaleOrder());
-		
-		return "home/home";
+		return "saleOrder/saleOrder_addOrUpdate";
 	}
 	
 	

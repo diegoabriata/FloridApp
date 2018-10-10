@@ -1,21 +1,22 @@
 package com.floridApp.controller;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-import com.floridApp.model.Customer;
 import com.floridApp.model.Sale;
-
+import com.floridApp.model.SaleOrder;
 import com.floridApp.service.BarrelService;
 import com.floridApp.service.CustomerService;
 import com.floridApp.service.SaleOrderService;
@@ -43,25 +44,40 @@ public class OrderController {
 	
 	//@manyToMany relationship with extra fields 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String barrelList(Model model){
+	public String barrelList(
+			Model model, 
+			@ModelAttribute("sale") final Sale sale, 
+			BindingResult mapping1BindingResult){
 		
-		model.addAttribute("customers", customerService.getAllCustomer());
         model.addAttribute("barrels", barrelService.getAllBarrel());
-        model.addAttribute("sales", saleService.getAllSale());
+        model.addAttribute("sale", sale);
+        model.addAttribute("customerCompany",sale.getCustomer().getCompany());
+        model.addAttribute("customerLastName",sale.getCustomer().getLastName());
+        model.addAttribute("customerName",sale.getCustomer().getName());
         model.addAttribute("orders", saleOrderService.getAllSaleOrder());
+   
         return ORDER;
     }
-	@RequestMapping(value= {"/createOrder"}, method = RequestMethod.POST)
+	
+	List<SaleOrder> salesOrders = new ArrayList<SaleOrder>();
+	@PostMapping(value= "/createOrder")
     @ResponseBody //https://stackoverflow.com/questions/28646332/how-does-the-spring-responsebody-annotation-work-in-this-restful-application-ex
-    public String saveOrder(@RequestParam String remito, @RequestParam String date, 
-    		@RequestParam Double total, @RequestParam String description, 
-    		@RequestParam Customer customer,@RequestParam(value="barrelIds[]") Long[] barrelIds,
-    		@RequestParam(value="typesBeers[]") String[] typesBeers, @RequestParam (value="beerPrices[]") Double[] beerPrices, 
-    		@RequestParam (value="barrelsLiters[]")Double barrelsLiters, 
-    		@RequestParam (value="barrelStatus[]") boolean barrelStatus) throws ParseException{
+    public String saveOrder(@RequestBody List<SaleOrder> barrelsData) throws ParseException{
+		
+		
+		//String orders = salesOrders.toString();
+		salesOrders.addAll(barrelsData);
+		
+		for (SaleOrder temp : salesOrders) {
+			System.out.println(temp);
+		}
+		
+		
 		
 		//1.Instantiate a new Sale object and save it
-		Sale sale = new Sale();
+		
+		
+		/*Sale sale = new Sale();
 		sale.setRemito(remito);
 		sale.setDescription(description);
 		SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -70,8 +86,7 @@ public class OrderController {
         sale.setCustomer(customer);
         sale.setTotal(total);
         saleService.saveOrUpdate(sale);
-        
-        Double[] barrelArray;
+        */
         
       		
        /* for(Long barrelId: barrelIds) {

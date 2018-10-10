@@ -1,6 +1,7 @@
 package com.floridApp.model;
 
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -18,7 +19,7 @@ public class Barrel {
 	private Long id;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="barrel")
-	private Set<SaleOrder> salesOrders;
+	private List<SaleOrder> salesOrders;
 	
 	
 	@Column(name = "liters_capacity")
@@ -30,10 +31,11 @@ public class Barrel {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Set<SaleOrder> getSalesOrders() {
+	
+	public List<SaleOrder> getSalesOrders() {
 		return salesOrders;
 	}
-	public void setSalesOrders(Set<SaleOrder> salesOrders) {
+	public void setSalesOrders(List<SaleOrder> salesOrders) {
 		this.salesOrders = salesOrders;
 	}
 	public Double getLitersCapacity() {

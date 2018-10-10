@@ -1,6 +1,8 @@
 package com.floridApp.model;
 
+import java.util.List;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,8 +41,9 @@ public class Customer {
 	private String email;
 	
 	//mappedBy: look at the information from the Sale class @JoinColumn
+	//https://stackoverflow.com/questions/46259878/org-hibernate-lazyinitializationexception-failed-to-lazily-initialize-a-collect
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="customer")
-	private Set<Sale> sales;
+	private List<Sale> sales;
 	
 	public Long getId() {
 		return id;
@@ -98,11 +101,11 @@ public class Customer {
 		this.email = email;
 	}
 
-	public Set<Sale> getSales() {
+	public List<Sale> getSales() {
 		return sales;
 	}
 
-	public void setSales(Set<Sale> sales) {
+	public void setSales(List<Sale> sales) {
 		this.sales = sales;
 	}
 
@@ -111,4 +114,5 @@ public class Customer {
 		return "Customer [id=" + id + ", name=" + name + ", lastName=" + lastName + ", phone=" + phone + ", dni=" + dni
 				+ ", company=" + company + ", email=" + email + ", sales=" + sales + "]";
 	}
+	
 }

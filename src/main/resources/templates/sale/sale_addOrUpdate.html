@@ -26,7 +26,7 @@ data-layout-decorate="~{home/home}">
                                 <div class="col-md-6 col-xs-12">
                                     <select th:field="${sale.customer}" 
                                             class="form-control select" data-live-search="true">
-                                        <option th:each="customer: ${saleCustomers}" th:value="${customer.id}" th:text="${customer.name + ' ' + customer.lastName + ', Empresa: ' + customer.company}"></option>
+                                        <option th:each="customer: ${saleCustomers}" th:value="${customer.id}"  th:text="${customer.name + ' ' + customer.lastName + ', Empresa: ' + customer.company}"></option>
                                     </select>
                                 </div>
                             </div>
@@ -52,14 +52,10 @@ data-layout-decorate="~{home/home}">
                                 <textarea type="text" class="form-control" th:field="${sale.description}"></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
-                                    <label class="col-md-3 col-xs-12 control-label">Total $</label>
-                            <div class="col-md-6 col-xs-12">
-                                <input type="text" class="form-control" id="totalPrice" th:field="${sale.total}"/>
-                            </div>      
+                            <input type="text" th:type="hidden" class="form-control" id="totalPrice" th:field="${sale.total}"/>    
                         </div> 
                         <div class="panel-footer">    
-                            <button class="btn btn-primary pull-right" type="submit">Guardar</button>
+                            <button class="btn btn-primary pull-right" type="submit">Continuar</button>
                         </div>
                 </form>
             </div>
