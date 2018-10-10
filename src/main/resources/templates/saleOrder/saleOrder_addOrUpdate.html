@@ -18,10 +18,11 @@ data-layout-decorate="~{home/home}">
                         </ul>
                     </div>
                     <div class="panel-heading">
-<!-- <input th:type="hidden" name="id" id="sale_id" th:field="${sale.id}" /> -->
+                            <input name="id" th:type="hidden" id="sale_id" th:field="${sale.id}" />
+                            <input name="id" th:type="hidden" id="sale_customer" th:field="${sale.customer}"/>
                                  <div class="form-group">
                                     <label for="customer_name_company">Cliente</label>
-                                        <input type="text" class="form-control" th:value="${customerLastName +' '+customerName + ', Empresa:'+ customerCompany}" readonly/>
+                                        <input type="text" class="form-control" th:value="${sale.customer.name +' '+sale.customer.lastName + ', Empresa:'+ sale.customer.company}" th:readonly/>
                                         
                                     </div>
                                     <div class="form-group">
@@ -50,24 +51,24 @@ data-layout-decorate="~{home/home}">
                                         <div class="form-group">
                                             <label for="barrel" class="col-sm-3 control-label">Barril</label>
                                             <div class="col-sm-9">
-                                                <select name="concept" id="barrel" class="form-control select" data-live-search="true">
+                                                <select name="concept" id="barrel_id" class="form-control select" data-live-search="true">
                                         <option  th:each="barrel: ${barrels}" th:value="${barrel.id}" th:text="${'Barril Nro:' +barrel.id+', Capacidad: ' + barrel.litersCapacity}"></option>
                                         </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="barrelsLiters" class="col-sm-3 control-label">Litros</label>
+                                            <label for="barrelLiters" class="col-sm-3 control-label">Litros</label>
                                             <div class="col-sm-9">
-                                                <input type="number" class="form-control" id="barrelsLiters" name="barrelsLiters">
+                                                <input type="number" class="form-control" id="barrelLiters" name="barrelLiters">
                                             </div>
                                         </div> 
                                         <div class="form-group">
                                             <label for="amount" class="col-sm-3 control-label">Tipo de Cerveza</label>
                                             <div class="col-sm-9">
                                                 <select id="typeBeer" name="typeBeer" class="form-control select" data-live-search="true">
-                                                    <option>IPA</option>
-                                                    <option>Blonde</option>
-                                                    <option>Black</option>
+                                                    <option value="IPA">IPA</option>
+                                                    <option value="Blonde">Blonde</option>
+                                                    <option value="Black">Black</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -81,8 +82,8 @@ data-layout-decorate="~{home/home}">
                                             <label for="status" class="col-sm-3 control-label">Estado del Barril</label>
                                             <div class="col-sm-9">
                                                 <select class="form-control" id="barrelStatus" name="barrelStatus">
-                                                    <option selected>Entregado</option>
-                                                    <option>Devuelto</option>
+                                                    <option value='true' selected>Entregado</option>
+                                                    <option value='false'>Devuelto</option>
                                                 </select>
                                             </div>
                                         </div> 
@@ -164,9 +165,10 @@ data-layout-decorate="~{home/home}">
     $(function(){
 
         $('.preview-add-button').click(function(){
+
             var form_data = {};
-            form_data["barrel"] = parseInt($( "#barrel").val());
-            form_data["liters"] = parseFloat($('.payment-form input[name="barrelsLiters"]').val());
+            form_data["barrel"] = parseInt($( "#barrel_id").val());
+            form_data["liters"] = parseFloat($('.payment-form input[name="barrelLiters"]').val());
             form_data["typeBeer"] = $('.payment-form #typeBeer option:selected').text();
             form_data["beerPrice"] = parseFloat($('.payment-form input[name="beerPrice"]').val());
             form_data["barrelStatus"] = $('.payment-form #barrelStatus option:selected').text();
@@ -185,47 +187,43 @@ data-layout-decorate="~{home/home}">
             
             $('.preview-table > tbody:last').append(row); 
             calc_total();
+            post_order();
+
         });  
     });
 
+        function post_order() {
+
+           var saleId = parseInt($('#sale_id').val());
+           var barrelId = parseInt($('#barrel_id').val());
+           var typeBeer = $('#typeBeer').val();
+           var beerPrice = parseFloat($('#beerPrice').val());
+           var barrelLiters = parseFloat($('#barrelLiters').val());
+           var barrelStatus =  $('#barrelStatus').val().toLowerCase() == 'true' ? true : false;
+           //var total = parseFloat($('#sale_total').html()); 
 
 
-
-
-       $('#btn_submit').on("click",function (e) {
-
-           e.preventDefault();
-
-           //1rst. Sale Object sale{}= customer, remito, date, description, total
-           //2nd. Order Object order{}= barrelId, barrelLiters, typeBeer, barrelStatus, beerPrice 
-
-           var customer = parseInt($("#sale_customer_name_company").val());
-           var remito = $("#sale_remito").val();
-           var date = $("#datetimepicker").val();
-           var description = $("#sale_description").val();
-           var total = parseFloat($('#sale_total').html()); 
-
-           console.log(remito);
-
-           var data = {customer:customer,remito:remito,date:date,total:total,description:description,barrelsData:barrelsData};
-
-           console.log(data);
+           //console.log(data);
            //https://stackoverflow.com/questions/21834180/passing-in-json-array-to-spring-mvc-controller
 
-         /*  $.ajax({
+           $.ajax({
                 type:"POST",
-                url:"/createorder",
-                data:{customer:customer,remito:remito,date:date,total:total,description:description,typeBeer:typeBeer,barrelIds:barrelIds},
+                url:"/order/createOrder",
+                data:{saleId:saleId,barrelId:barrelId,typeBeer:typeBeer,beerPrice:beerPrice,barrelLiters:barrelLiters,barrelStatus:barrelStatus},
                 success:function (data) {
-                    console.log(barrelIds, customer, date, total, description, typeBeer);
-                    if (confirm("Orden de Venta nro:"+data+" guardada")) {
-                        window.location.reload();
-                        
-                    }
                     
-                }
-            }); */
-           
-        });
+
+                    if(data == true)
+                        {
+                            window.location.reload(); 
+                        }
+                        else
+                        {
+                            console.log(data);
+                        }
+                } 
+                
+            });   
+        }
 
 </script>

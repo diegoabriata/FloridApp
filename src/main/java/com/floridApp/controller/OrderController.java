@@ -1,8 +1,6 @@
 package com.floridApp.controller;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,15 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.floridApp.model.Barrel;
 import com.floridApp.model.Sale;
 import com.floridApp.model.SaleOrder;
 import com.floridApp.service.BarrelService;
-import com.floridApp.service.CustomerService;
 import com.floridApp.service.SaleOrderService;
 import com.floridApp.service.SaleService;
 
@@ -28,8 +26,6 @@ import com.floridApp.service.SaleService;
 @RequestMapping(value="/order")
 public class OrderController {
 	
-	@Autowired
-	private CustomerService customerService;
 	@Autowired
 	private SaleService saleService;
 	@Autowired
@@ -51,57 +47,36 @@ public class OrderController {
 		
         model.addAttribute("barrels", barrelService.getAllBarrel());
         model.addAttribute("sale", sale);
-        model.addAttribute("customerCompany",sale.getCustomer().getCompany());
-        model.addAttribute("customerLastName",sale.getCustomer().getLastName());
-        model.addAttribute("customerName",sale.getCustomer().getName());
         model.addAttribute("orders", saleOrderService.getAllSaleOrder());
    
         return ORDER;
     }
 	
-	List<SaleOrder> salesOrders = new ArrayList<SaleOrder>();
+	
 	@PostMapping(value= "/createOrder")
     @ResponseBody //https://stackoverflow.com/questions/28646332/how-does-the-spring-responsebody-annotation-work-in-this-restful-application-ex
-    public String saveOrder(@RequestBody List<SaleOrder> barrelsData) throws ParseException{
+    public String saveOrder(@RequestParam Long saleId, @RequestParam Long barrelId, 
+    		@RequestParam String typeBeer,@RequestParam Double beerPrice,
+    		@RequestParam Double barrelLiters, @RequestParam boolean barrelStatus 
+    		) throws ParseException{
 		
+		Barrel barrelOrder = barrelService.getBarrelById(barrelId);
 		
-		//String orders = salesOrders.toString();
-		salesOrders.addAll(barrelsData);
+		Sale saleOrder = saleService.getSaleById(saleId);
+		Double totalOrder = saleOrder.getTotal() + beerPrice;
+		saleOrder.setTotal(totalOrder);
+		saleService.saveOrUpdate(saleOrder);
 		
-		for (SaleOrder temp : salesOrders) {
-			System.out.println(temp);
-		}
+		SaleOrder order = new SaleOrder();
+		order.setSale(saleOrder);
+		order.setBarrel(barrelOrder);
+		order.setTypeBeer(typeBeer);
+		order.setBeerPrice(beerPrice);
+		order.setBarrelLiters(barrelLiters);
+		order.setBarrelStatus(barrelStatus);
+		saleOrderService.saveOrUpdate(order);
 		
-		
-		
-		//1.Instantiate a new Sale object and save it
-		
-		
-		/*Sale sale = new Sale();
-		sale.setRemito(remito);
-		sale.setDescription(description);
-		SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        Date d1 = format1.parse(date);
-        sale.setDate(d1);
-        sale.setCustomer(customer);
-        sale.setTotal(total);
-        saleService.saveOrUpdate(sale);
-        */
-        
-      		
-       /* for(Long barrelId: barrelIds) {
-        	
-        	SaleOrder saleOrder = new SaleOrder();
-        	saleOrder.setBarrel(barrelService.getBarrelById(barrelId));
-        	saleOrder.setSale(sale);
-        	saleOrder.setBarrelStatus(barrelStatus);
-        	saleOrder.setTypeBeer(typeBeer);
-    		saleOrder.setBeerPrice(beerPrice);
-    		saleOrder.setBarrelLiters(barrelLiters);
-        
-		}*/
-        
-		return SALE_LIST;
+		return order.getId().toString();
 	}
 	
 	
