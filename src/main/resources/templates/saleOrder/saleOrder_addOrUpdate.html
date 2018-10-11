@@ -22,7 +22,7 @@ data-layout-decorate="~{home/home}">
                             <input name="id" th:type="hidden" id="sale_customer" th:field="${sale.customer}"/>
                                  <div class="form-group">
                                     <label for="customer_name_company">Cliente</label>
-                                        <input type="text" class="form-control" th:value="${sale.customer.name +' '+sale.customer.lastName + ', Empresa:'+ sale.customer.company}" th:readonly/>
+                                        <input type="text" class="form-control" th:value="${sale.customer.name +' '+sale.customer.lastName + ', Empresa:'+ sale.customer.company}" readonly/>
                                         
                                     </div>
                                     <div class="form-group">
@@ -189,6 +189,8 @@ data-layout-decorate="~{home/home}">
             calc_total();
             post_order();
 
+            $( "#barrel_id option:selected").remove();
+            
         });  
     });
 
@@ -200,30 +202,29 @@ data-layout-decorate="~{home/home}">
            var beerPrice = parseFloat($('#beerPrice').val());
            var barrelLiters = parseFloat($('#barrelLiters').val());
            var barrelStatus =  $('#barrelStatus').val().toLowerCase() == 'true' ? true : false;
-           //var total = parseFloat($('#sale_total').html()); 
+
+           // Validations:
+
+           
 
 
-           //console.log(data);
-           //https://stackoverflow.com/questions/21834180/passing-in-json-array-to-spring-mvc-controller
+
+
 
            $.ajax({
                 type:"POST",
                 url:"/order/createOrder",
                 data:{saleId:saleId,barrelId:barrelId,typeBeer:typeBeer,beerPrice:beerPrice,barrelLiters:barrelLiters,barrelStatus:barrelStatus},
                 success:function (data) {
-                    
-
-                    if(data == true)
-                        {
+                    if(data == true){
                             window.location.reload(); 
                         }
-                        else
-                        {
+                        else{
                             console.log(data);
                         }
                 } 
                 
             });   
-        }
 
+        }
 </script>

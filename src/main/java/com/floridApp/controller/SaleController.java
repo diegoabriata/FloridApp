@@ -63,8 +63,9 @@ public class SaleController {
 		}else {
 			
 			SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-	        Date d1 = format1.parse( date );
-	        sale.setDate(d1);
+	        Date d1 = format1.parse(date);
+	        sale.setDate(d1); 
+	        sale.setTotal(0.0);
 	        
 			saleService.saveOrUpdate(sale);
 			
