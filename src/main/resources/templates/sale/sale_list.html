@@ -32,13 +32,13 @@
                                                     <th>Cliente</th>
                                                     <th width="100">Fecha y Hora</th>
                                                     <th width="100">Remito</th>
+                                                    <th width="100">Barriles</th>
                                                     <th width="100">Total</th>
                                                     <th width="100">Descripción</th>
-                                                    <!-- faltan barriles -->
                                                     <th width="100">Acciones</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>                                            
+                                            <tbody>                                                  
                                                 <tr th:each="sale : ${saleList}">
                                                     <td class="text-center" th:text="${sale.id}">
                                                     </td>
@@ -50,11 +50,17 @@
                                                     <td th:text="${#dates.format(sale.date, 'dd/MM/yyyy HH:mm')}"></td>
                                          
                                                     <td th:text="${sale.remito}"></td>
-                                                    <td th:text="${'$'+sale.total}"></td>
-                                                    <td th:text="${sale.description}"></td>
-                                                    <!-- <td th:text="${}"></td> -->
+
                                                     <td>
-                                                            
+                                                    <span th:each="salesOrder : ${sale.salesOrders}">
+                                                        <strong><div th:text="${'•'+salesOrder.barrel.id +', Estado:'}"/><div th:text="${salesOrder.barrelStatus}"/></strong>
+                                                    </span> 
+                                                    </td>
+                                                    
+                                                    <td th:text="${'$'+sale.total}"></td>
+                                                    
+                                                    <td th:text="${sale.description}"></td>
+                                                    <td>
                                                         <a th:href="@{/sale/saleEdit/__${sale.id}__}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span>
                                                         </a>
                                                         

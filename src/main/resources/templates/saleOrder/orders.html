@@ -91,7 +91,7 @@
                                         <td th:text="${order.sale.description}"></td>
                                         <td>
                                             <table>
-                                                <tr th:each="barrel :${order.barrels}">
+                                                <tr th:each="barrel :${order.barrel}">
                                                     <td th:text="${barrel.id+' '}"></td>
                                                 </tr>
                                             </table>

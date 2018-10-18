@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.floridApp.model.Sale;
 import com.floridApp.service.CustomerService;
+import com.floridApp.service.SaleOrderService;
 import com.floridApp.service.SaleService;
 
 @Controller
@@ -24,12 +25,17 @@ public class SaleController {
 	
 	@Autowired
 	SaleService saleService;
+
 	@Autowired
 	CustomerService customerService;
-
+	
+	@Autowired
+	SaleOrderService saleOrderService;
+	
 	@RequestMapping(value= {"/","/list"}, method=RequestMethod.GET)
 	public String saleList( Model model) {
-		model.addAttribute("saleList", saleService.getAllSale());		
+		model.addAttribute("saleList", saleService.getAllSale());
+		model.addAttribute("orders", saleOrderService.getAllSaleOrder());	
 		return "sale/sale_list";
 	}
 
