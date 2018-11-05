@@ -2,6 +2,8 @@ package com.floridApp.controller;
 
 import java.text.ParseException;
 
+
+import com.floridApp.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,14 +33,16 @@ public class OrderController {
 	@Autowired
 	private BarrelService barrelService;
 	
-	@Autowired 
+	@Autowired
 	private SaleOrderService saleOrderService;
+
+	@Autowired
+	private CustomerService customerService;
 	
 	private final static String ORDER = "saleOrder/saleOrder_addOrUpdate";
 	private final static String SALE_LIST = "sale/sale_list";
-	
-	
-	//@manyToMany relationship with extra fields 
+
+	//manyToMany relationship with extra fields
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String barrelList(
 			Model model, 
@@ -48,7 +52,7 @@ public class OrderController {
         model.addAttribute("barrels", barrelService.getAllBarrel());
         model.addAttribute("sale", sale);
         model.addAttribute("orders", saleOrderService.getAllSaleOrder());
-   
+
         return ORDER;
     }
 	

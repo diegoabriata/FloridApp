@@ -53,7 +53,7 @@
 
                                                     <td>
                                                     <span th:each="salesOrder : ${sale.salesOrders}">
-                                                        <strong><div th:text="${'•'+salesOrder.barrel.id +', Estado:'}"/><div th:text="${salesOrder.barrelStatus}"/></strong>
+                                                        <strong><div th:text="${'•'+salesOrder.barrel.id}"/><div th:text="${salesOrder.barrelLiters}"/><div th:text="${salesOrder.typeBeer}"/><div th:text="${'-------'}"/></strong>
                                                     </span> 
                                                     </td>
                                                     
