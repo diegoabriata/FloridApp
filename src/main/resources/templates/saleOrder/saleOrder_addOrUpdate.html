@@ -189,7 +189,7 @@ data-layout-decorate="~{home/home}">
             calc_total();
             post_order();
             
-            $( "#barrel_id option:selected").remove();
+            //$( "#barrel_id option:selected").remove();
             
         });  
     });
@@ -212,6 +212,7 @@ data-layout-decorate="~{home/home}">
                 success:function (data) {
                     if(data == true){
                             window.location.reload(); 
+                            $( "#barrel_id option:selected").attr("disabled", true); 
                         }
                         else{
                             console.log(data);

@@ -84,7 +84,7 @@ public class SaleController {
 	@RequestMapping(value="/saleDelete/{id}", method = RequestMethod.GET)
 	public String saleDelete(Model model, @PathVariable(required = true, name = "id") Long id) {
 		
-		saleService.deleteSale(id);;
+		saleService.deleteSale(id);
 		model.addAttribute("saleList", saleService.getAllSale());
 		return "sale/sale_list";
 	}

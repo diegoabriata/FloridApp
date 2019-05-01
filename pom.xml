@@ -11,6 +11,7 @@
  <name>SpringBootSigninSignupExample</name>
  <description>Demo project for Spring Boot</description>
 
+
  <parent>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-parent</artifactId>
@@ -100,6 +101,7 @@
     <artifactId>spring-boot-maven-plugin</artifactId>
    </plugin>
   </plugins>
+  <finalName>docker-spring-boot</finalName>
  </build>
 
   <repositories>

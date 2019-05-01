@@ -40,7 +40,7 @@ public class SaleOrder {
 	private Double barrelLiters;
 	
 	@Column(name = "barrel_status")
-	private boolean barrelStatus; // boolean save you a lot more memory than the Object Boolean
+	private boolean barrelStatus; 
 
 	public Long getId() {
 		return id;
